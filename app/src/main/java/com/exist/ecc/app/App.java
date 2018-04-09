@@ -1,10 +1,15 @@
 package com.exist.ecc.app;
 
 import com.exist.ecc.core.service.Test;
+import com.exist.ecc.core.model.Person;
+import com.exist.ecc.core.model.Name;
 
 public class App {
       public static void main( String[] args ) {
-            System.out.println( "Hello World!" );
-            new Test().printTest();
+            UserInterface.menu();
+            Name name = new Name("Mikhail", "Bagalihog", "Nunez");
+            Person person = new Person(name);
+
+            System.out.println(person);
       }
 }
