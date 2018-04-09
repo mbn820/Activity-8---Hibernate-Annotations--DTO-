@@ -11,5 +11,6 @@ public class App {
             Person person = new Person(name);
 
             System.out.println(person);
+            // ConsoleInputUtil.getDesiredPattern(String msg, String pattern)
       }
 }
