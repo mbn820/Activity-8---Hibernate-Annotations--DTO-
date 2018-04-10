@@ -5,69 +5,69 @@ import java.util.HashSet;
 import java.util.Date;
 
 public class Person {
-      private int id;
-      private Name name;
-      private Address address;
-      private Date birthDate;
-      private Date dateHired;
-      private double gwa;
-      private boolean currentlyEmployed;
-      // private Set<ContactInfo> contactInfos = new HashSet<ContacInfo>(); // -> change to map?
-      // private Set<Role> roles = new HashSet<Role>();
+    private int id;
+    private Name name;
+    private Address address;
+    private Date birthDate;
+    private Date dateHired;
+    private double gwa;
+    private boolean currentlyEmployed;
+    // private Set<ContactInfo> contactInfos = new HashSet<ContacInfo>(); // -> change to map?
+    // private Set<Role> roles = new HashSet<Role>();
+    
+    public Person(Name name) {
+        this.name = name;
+    }
 
-      public Person(Name name) {
-            this.name = name;
-      }
+    // getters
+    public int getId() { return id; }
+    public Name getName() { return name; }
+    public Address getAddress() { return address; }
+    public Date getBirthDate() { return birthDate; }
+    public Date getDateHired() { return dateHired; }
+    public double getGwa() { return gwa; }
+    public boolean getEmploymentStatus() { return currentlyEmployed; }
+    // public Set<ContacInfo> getContactInfos() { return contactInfos; }
+    // public Set<Role> getRoles() { return roles; }
 
-      // getters
-      public int getId() { return id; }
-      public Name getName() { return name; }
-      public Address getAddress() { return address; }
-      public Date getBirthDate() { return birthDate; }
-      public Date getDateHired() { return dateHired; }
-      public double getGwa() { return gwa; }
-      public boolean getEmploymentStatus() { return currentlyEmployed; }
-      // public Set<ContacInfo> getContactInfos() { return contactInfos; }
-      // public Set<Role> getRoles() { return roles; }
+    // setters
+    public void setId(int id) {
+        this.id = id;
+    }
 
-      // setters
-      public void setId(int id) {
-            this.id = id;
-      }
+    public void setName(Name name) {
+        this.name = name;
+    }
 
-      public void setName(Name name) {
-            this.name = name;
-      }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-      public void setAddress(Address address) {
-            this.address = address;
-      }
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
-      public void setBirthDate(Date birthDate) {
-            this.birthDate = birthDate;
-      }
+    public void setDateHired(Date dateHired) {
+        this.dateHired = dateHired;
+    }
 
-      public void setDateHired(Date dateHired) {
-            this.dateHired = dateHired;
-      }
+    public void setGwa(double gwa) {
+        this.gwa = gwa;
+    }
 
-      public void setGwa(double gwa) {
-            this.gwa = gwa;
-      }
+    public void setEmploymentStatus(boolean currentlyEmployed) {
+        this.currentlyEmployed = currentlyEmployed;
+    }
 
-      public void setEmploymentStatus(boolean currentlyEmployed) {
-            this.currentlyEmployed = currentlyEmployed;
-      }
+    // public void addContactInfo(ContactInfo contactInfo) {
+    //       contactInfos.add(contactInfo);
+    // }
 
-      // public void addContactInfo(ContactInfo contactInfo) {
-      //       contactInfos.add(contactInfo);
-      // }
+    // public void addRole(Role role) {
+    //       roles.add(role);
+    // }
 
-      // public void addRole(Role role) {
-      //       roles.add(role);
-      // }
-
-      public String toString() {
-            return "Person: " + name.toString();
-      }
+    public String toString() {
+        return "Person: " + name.toString();
+    }
 }

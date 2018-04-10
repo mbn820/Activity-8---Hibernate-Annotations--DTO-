@@ -55,7 +55,7 @@ public class ConsoleInputUtil {
 		do {
 			correctInput = getAnyString(message);
 			if(correctInput.length() != desiredStringLength)
-				System.out.println("ERROR: String length should be " + desiredStringLength);
+			System.out.println("ERROR: String length should be " + desiredStringLength);
 		} while (correctInput.length() != desiredStringLength);
 
 		return correctInput;
@@ -81,7 +81,7 @@ public class ConsoleInputUtil {
 		do {
 			input = getAnyInteger(message);
 			if(input < desiredMin || input > desiredMax)
-				System.err.println(errorMessage);
+			System.err.println(errorMessage);
 		} while (input < desiredMin || input > desiredMax);
 
 		return input;
@@ -100,7 +100,7 @@ public class ConsoleInputUtil {
 	private static boolean isDesired(String str, String...desiredValues) {
 		for(String elem : desiredValues) {
 			if (str.equalsIgnoreCase(elem)) return true;
-	    }
+		}
 		return false;
 	}
 

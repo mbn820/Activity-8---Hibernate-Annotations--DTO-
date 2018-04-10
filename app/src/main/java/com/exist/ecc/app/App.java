@@ -5,12 +5,12 @@ import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Name;
 
 public class App {
-      public static void main( String[] args ) {
-            UserInterface.menu();
-            Name name = new Name("Mikhail", "Bagalihog", "Nunez");
-            Person person = new Person(name);
+    public static void main( String[] args ) {
+        UserInterface.menu();
+        Name name = new Name("Mikhail", "Bagalihog", "Nunez");
+        Person person = new Person(name);
 
-            System.out.println(person);
-            // ConsoleInputUtil.getDesiredPattern(String msg, String pattern)
-      }
+        System.out.println(person);
+        // ConsoleInputUtil.getDesiredPattern(String msg, String pattern)
+    }
 }
