@@ -87,6 +87,11 @@ public class ConsoleInputUtil {
 		return input;
 	}
 
+	public static int getIntegerBetween(String message, int desiredMin, int desiredMax) {
+		String errorMessage = "Invalid input";
+		return getIntegerBetween(message, desiredMin, desiredMax, errorMessage);
+	}
+
 	private static boolean isInteger(String str) {
 		try {
 			int test = Integer.parseInt(str);
