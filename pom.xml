@@ -21,7 +21,8 @@
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             <maven.compiler.source>1.8</maven.compiler.source>
             <maven.compiler.target>1.8</maven.compiler.target>
-            <mainClass>com.exist.ecc.app.App</mainClass>
+            <mainClass>com.exist.ecc.core.dao.PersonDao</mainClass>
+            <hibernateVersion>4.3.11.Final</hibernateVersion>
       </properties>
 
       <dependencyManagement>
@@ -31,6 +32,18 @@
                         <artifactId>junit</artifactId>
                         <version>3.8.1</version>
                         <scope>test</scope>
+                  </dependency>
+
+                  <dependency>
+                      <groupId>org.hibernate</groupId>
+                      <artifactId>hibernate-core</artifactId>
+                      <version>${hibernateVersion}</version>
+                  </dependency>
+
+                  <dependency>
+                      <groupId>org.postgresql</groupId>
+                      <artifactId>postgresql</artifactId>
+                      <version>42.2.2</version>
                   </dependency>
             </dependencies>
       </dependencyManagement>

@@ -8,9 +8,9 @@ public class App {
     public static void main( String[] args ) {
         UserInterface.menu();
         Name name = new Name("Mikhail", "Bagalihog", "Nunez");
-        Person person = new Person(name);
-
-        System.out.println(person);
+        // Person person = new Person(name);
+        //
+        // System.out.println(person);
         // ConsoleInputUtil.getDesiredPattern(String msg, String pattern)
     }
 }

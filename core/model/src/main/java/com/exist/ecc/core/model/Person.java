@@ -7,6 +7,8 @@ import java.util.Date;
 public class Person {
     private int id;
     private Name name;
+    private String firstName;
+    private String lastName;
     private Address address;
     private Date birthDate;
     private Date dateHired;
@@ -14,10 +16,12 @@ public class Person {
     private boolean currentlyEmployed;
     // private Set<ContactInfo> contactInfos = new HashSet<ContacInfo>(); // -> change to map?
     // private Set<Role> roles = new HashSet<Role>();
-    
-    public Person(Name name) {
-        this.name = name;
-    }
+
+    // public Person(Name name) {
+    //     this.name = name;
+    // }
+
+    public Person() {}
 
     // getters
     public int getId() { return id; }
@@ -31,6 +35,14 @@ public class Person {
     // public Set<Role> getRoles() { return roles; }
 
     // setters
+    public void setFirst(String first) {
+        firstName = first;
+    }
+
+    public void setLast(String last) {
+        lastName = last;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
