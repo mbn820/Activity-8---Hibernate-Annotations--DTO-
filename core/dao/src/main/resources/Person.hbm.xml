@@ -5,14 +5,16 @@
 
 <hibernate-mapping>
 	<class name="com.exist.ecc.core.model.Person" table="Person">
-		<id name = "id" type = "int" column = "id">
+		<id name = "personId" type = "int" column = "person_id">
 			<generator class="native"/>
 		</id>
 
 	    <component name = "name" class = "com.exist.ecc.core.model.Name">
-			<property name = "firstName" column = "first_name" type = "string"/>
+			<property name = "firstName" column = "first_name" type = "string" not-null = "true"/>
 			<property name = "middleName" column = "middle_name" type = "string"/>
 			<property name = "lastName" column = "last_name" type = "string"/>
+			<property name = "suffix" column = "suffix" type = "string"/>
+			<property name = "title" column = "title" type = "string"/>
 		</component>
 
 		<component name = "address" class = "com.exist.ecc.core.model.Address">
@@ -21,6 +23,12 @@
 			<property name = "municipality" column = "municipality" type = "string"/>
 			<property name = "zipcode" column = "zipcode" type = "string"/>
 		</component>
+
+		<property name = "birthDate" column = "birth_date" type = "date"/>
+		<property name = "dateHired" column = "date_hired" type = "date"/>
+		<property name = "currentlyEmployed" column = "currently_employed" type = "boolean"/>
+		<property name = "gwa" column = "gwa" type = "double"/>
+
 
 	</class>
 </hibernate-mapping>

@@ -22,7 +22,7 @@
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
             <maven.compiler.source>1.8</maven.compiler.source>
             <maven.compiler.target>1.8</maven.compiler.target>
-            <mainClass>com.exist.ecc.core.dao.PersonDao</mainClass>
+            <mainClass>com.exist.ecc.app.App</mainClass>
             <hibernateVersion>4.3.11.Final</hibernateVersion>
       </properties>
 
@@ -45,6 +45,12 @@
                       <groupId>org.postgresql</groupId>
                       <artifactId>postgresql</artifactId>
                       <version>42.2.2</version>
+                  </dependency>
+
+                  <dependency>
+                      <groupId>org.apache.commons</groupId>
+                      <artifactId>commons-lang3</artifactId>
+                      <version>3.7</version>
                   </dependency>
             </dependencies>
       </dependencyManagement>

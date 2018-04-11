@@ -1,7 +1,12 @@
 package com.exist.ecc.app;
 
+import com.exist.ecc.core.dao.PersonDao;
+
 public class UserInterface {
+    private static PersonDao personDao = new PersonDao();
+
     public static void menu() {
+        System.out.println("\n\n");
         System.out.println("[1] Add new Person");
         System.out.println("[2] View Person records");
         System.out.println("[3] Update Person details");
@@ -31,7 +36,7 @@ public class UserInterface {
 
     public static void addNewPerson() {
         System.out.println("---ADD NEW PERSON---");
-        new AddNewPersonForm().getAllDetails();
+        new AddPersonForm(personDao).show();
         menu();
     }
 
@@ -45,6 +50,8 @@ public class UserInterface {
 
     public static void deletePersonRecords() {
         System.out.println("---DELETE PERSON RECORDS---");
+        new DeletePersonForm(personDao).show();
+        menu();
     }
 
     public static void viewRoles() {
@@ -53,6 +60,13 @@ public class UserInterface {
 
     public static void exit() {
         System.out.println("---EXIT---");
+        String decision = ConsoleInputUtil.getDesiredString("Are you sure? [y/n]: ", "y", "n");
+
+        switch(decision) {
+            case "y" : System.exit(0);
+            case "n" : menu(); break;
+            default : menu();
+        }
     }
 
 }

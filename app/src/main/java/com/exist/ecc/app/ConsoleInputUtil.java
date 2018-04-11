@@ -81,7 +81,7 @@ public class ConsoleInputUtil {
 		do {
 			input = getAnyInteger(message);
 			if(input < desiredMin || input > desiredMax)
-			System.err.println(errorMessage);
+				System.err.println(errorMessage);
 		} while (input < desiredMin || input > desiredMax);
 
 		return input;
@@ -92,9 +92,46 @@ public class ConsoleInputUtil {
 		return getIntegerBetween(message, desiredMin, desiredMax, errorMessage);
 	}
 
+	public static double getAnyDouble(String message) {
+		String input;
+
+		do {
+			input = getAnyString(message);
+			if(!isDouble(input)) { System.out.println(DEFAULT_ERROR_MESSAGE); }
+		} while(!isDouble(input));
+
+		return Double.parseDouble(input);
+	}
+
+	public static double getDoubleBetween(String message, double desiredMin, double desiredMax, String errorMessage) {
+		double input;
+
+		do {
+			input = getAnyDouble(message);
+			if(input < desiredMin || input > desiredMax) { System.err.println(errorMessage); }
+		} while (input < desiredMin || input > desiredMax);
+
+		return input;
+	}
+
+	public static double getDoubleBetween(String message, double desiredMin, double desiredMax) {
+		String errorMessage = "Invalid input";
+		return getDoubleBetween(message, desiredMin, desiredMax, errorMessage);
+	}
+
 	private static boolean isInteger(String str) {
 		try {
-			int test = Integer.parseInt(str);
+			Integer.parseInt(str);
+		} catch(Exception e) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private static boolean isDouble(String str) {
+		try {
+			Double.parseDouble(str);
 		} catch(Exception e) {
 			return false;
 		}

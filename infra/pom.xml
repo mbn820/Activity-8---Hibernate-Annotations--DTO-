@@ -12,7 +12,15 @@
 
     <name>infra</name>
 
-    <dependencies>
-
-    </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/persistence</directory>
+                <includes>
+                    <include>hibernate.cfg.xml</include>
+                    <include>Person.hbm.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
