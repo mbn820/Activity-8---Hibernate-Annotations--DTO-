@@ -6,6 +6,10 @@ public class Address {
     private String municipality;
     private String zipcode;
 
+    public Address() {
+
+    }
+
     public Address(int streetNumber, String barangay, String municipality, String zipcode) {
         this.streetNumber = streetNumber;
         this.barangay = barangay;
@@ -16,8 +20,8 @@ public class Address {
     // getters
     public int getStreetNumber() { return streetNumber; }
     public String getBarangay() { return barangay; }
-    public String municipality() { return municipality; }
-    public String zipcode() { return zipcode; }
+    public String getMunicipality() { return municipality; }
+    public String getZipcode() { return zipcode; }
 
     // setters
     public void setStreetNumber(int streetNumber) {

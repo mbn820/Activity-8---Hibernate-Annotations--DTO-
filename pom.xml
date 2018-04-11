@@ -15,7 +15,8 @@
             <module>core</module>
             <module>util</module>
             <module>all-jar</module>
-      </modules>
+    <module>infra</module>
+  </modules>
 
       <properties>
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

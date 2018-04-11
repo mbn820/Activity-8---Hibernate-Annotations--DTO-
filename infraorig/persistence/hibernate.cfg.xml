@@ -8,7 +8,9 @@
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">ex1stgl0bal</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/TestDBPerson</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/postgres</property>
+
+
 
 		<property name="connection_pool_size">1</property>
 
@@ -19,7 +21,7 @@
 
 
 		<!--mapping class="com.exist.ecc.model.Person"/-->
-		<mapping resource = "infra/persistence/Person.hbm.xml"/>
+		<mapping file = "/home/mnunez/Desktop/Activity 1 - 5 (gitrepository)/Activity 7 - Hibernate/infra/persistence/person.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>

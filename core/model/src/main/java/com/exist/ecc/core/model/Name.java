@@ -4,8 +4,10 @@ public class Name {
     private String firstName;
     private String lastName;
     private String middleName;
-    // private String suffix; // jr, III, sr., etc
-    // private String title; // dr., atty., etc
+
+    public Name() {
+
+    }
 
     public Name(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
@@ -23,12 +25,12 @@ public class Name {
         this.firstName = firstName;
     }
 
-    public void setLastName(String firstName) {
-        this.firstName = firstName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setMiddletName(String firstName) {
-        this.firstName = firstName;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String toString() {

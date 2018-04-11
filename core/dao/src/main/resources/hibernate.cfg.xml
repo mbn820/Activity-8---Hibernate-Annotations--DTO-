@@ -14,12 +14,12 @@
 
 		<property name="hbm2ddl.auto">create</property>
 
-		<property name="show_sql">true</property>
+		<!--property name="show_sql">true</property-->
 
 
 
 		<!--mapping class="com.exist.ecc.model.Person"/-->
-		<mapping resource = "infra/persistence/Person.hbm.xml"/>
+		<mapping resource = "Person.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>
