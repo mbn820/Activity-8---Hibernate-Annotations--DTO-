@@ -36,7 +36,7 @@ public class UserInterface {
 
     public static void addNewPerson() {
         System.out.println("---ADD NEW PERSON---");
-        new AddPersonForm(personDao).show();
+        new AddPersonForm().show();
         menu();
     }
 
