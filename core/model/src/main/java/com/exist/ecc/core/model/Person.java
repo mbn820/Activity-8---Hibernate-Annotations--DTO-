@@ -5,40 +5,48 @@ import java.util.HashSet;
 import java.util.Date;
 
 public class Person {
-    private int personId;
+    private int id;
     private Name name;
     private Address address;
     private Date birthDate;
     private Date dateHired;
     private boolean currentlyEmployed;
     private double gwa;
+    private Set<Role> roles;
+    private Set<Contact> contacts;
 
     public Person() {
 
     }
 
-    public Person(Name name, Address address, Date birthDate, Date dateHired, boolean currentlyEmployed, double gwa) {
+    public Person(Name name, Address address, Date birthDate, Date dateHired,
+                  boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
+
         this.name = name;
         this.address = address;
         this.birthDate = birthDate;
         this.dateHired = dateHired;
         this.currentlyEmployed = currentlyEmployed;
         this.gwa = gwa;
+        this.roles = roles;
+        this.contacts = contacts;
     }
 
     // getters
-    public int getPersonId() { return personId; }
+    public int getId() { return id; }
     public Name getName() { return name; }
     public Address getAddress() { return address; }
     public Date getBirthDate() { return birthDate; }
     public Date getDateHired() { return dateHired; }
     public boolean getCurrentlyEmployed() { return currentlyEmployed; }
     public double getGwa() { return gwa; }
+    public Set<Role> getRoles() { return roles; }
+    public Set<Contact> getContacts() { return contacts; }
 
 
     // setters
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(Name name) {
@@ -63,6 +71,22 @@ public class Person {
 
     public void setGwa(double gwa) {
         this.gwa = gwa;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+    public void addContact(Contact contact) {
+        contacts.add(contact);
     }
 
     public String toString() {

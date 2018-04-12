@@ -4,9 +4,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.exist.ecc.core.model.Person" table="Person">
-		<id name = "personId" type = "int" column = "person_id">
-			<generator class="native"/>
+	<class name = "com.exist.ecc.core.model.Person" table = "PERSON">
+		<id name = "id" type = "int" column = "id">
+			<generator class = "increment"/>
 		</id>
 
 	    <component name = "name" class = "com.exist.ecc.core.model.Name">
@@ -29,6 +29,16 @@
 		<property name = "currentlyEmployed" column = "currently_employed" type = "boolean"/>
 		<property name = "gwa" column = "gwa" type = "double"/>
 
+		<set name = "contacts" cascade = "all">
+			<key column = "person_id"/>
+			<one-to-many class = "com.exist.ecc.core.model.Contact"/>
+		</set>
 
+		<!--
+		<set name = "roles" cascade = "save-update">
+			<key column = "person_id"/>
+			<one-to-many class = "com.exist.ecc.core.model.Role"/>
+		</set>
+     	-->
 	</class>
 </hibernate-mapping>

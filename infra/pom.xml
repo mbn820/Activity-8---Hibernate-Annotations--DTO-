@@ -15,10 +15,12 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources/persistence</directory>
+                <directory>persistence/</directory>
                 <includes>
                     <include>hibernate.cfg.xml</include>
                     <include>Person.hbm.xml</include>
+                    <include>Role.hbm.xml</include>
+                    <include>Contact.hbm.xml</include>
                 </includes>
             </resource>
         </resources>
