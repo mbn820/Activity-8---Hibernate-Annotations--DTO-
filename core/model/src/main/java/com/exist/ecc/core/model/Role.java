@@ -1,9 +1,11 @@
 package com.exist.ecc.core.model;
 
-public class Role implements java.io.Serializable {
+import java.util.Set;
+
+public class Role {
 	private int id;
 	private String roleName;
-	private Person person;
+	private Set<Person> persons;
 
 	public Role() {
 
@@ -15,7 +17,7 @@ public class Role implements java.io.Serializable {
 
 	public int getId() { return id; }
 	public String getRoleName() { return roleName; }
-	public Person getPerson() { return person; }
+	public Set<Person> getPersons() { return persons; }
 
 	public void setId(int id) {
 		this.id = id;
@@ -25,8 +27,8 @@ public class Role implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setPersons(Set<Person> person) {
+		this.persons = persons;
 	}
 
 	public boolean equals(Object obj) {

@@ -10,5 +10,11 @@
 		</id>
 
 		<property name = "roleName" column = "role_name" type = "string"/>
+
+
+		<set name = "persons" cascade = "save-update" table = "PER_ROLE" inverse = "true">
+			<key column = "role_id"/>
+			<many-to-many column = "person_id" class = "com.exist.ecc.core.model.Person"/>
+		</set>
 	</class>
 </hibernate-mapping>
