@@ -3,6 +3,7 @@ package com.exist.ecc.core.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.Query;
 import org.hibernate.cfg.Configuration;
 
 import java.util.List;
@@ -27,29 +28,38 @@ public class PersonDao implements PersonDaoInterface {
 	// }
 
 	public Integer addPerson(Person person) {
-		return (Integer) HibernateUtil.transact(new AddPersonOperation(person));
+		return (Integer) new HibernateUtil().transact(new AddOperation(person));
 	}
+	//
+	// public Person getPerson(int id) {
+	// 	Session session = sessionFactory.openSession();
+	// 	Transaction transaction = session.beginTransaction();
+	//
+	// 	Person person = (Person) session.get(Person.class, id);
+	// 	transaction.commit();
+	// 	session.close();
+	//
+	// 	return person;
+	// }
 
 	public Person getPerson(int id) {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
-
-		Person person = (Person) session.get(Person.class, id);
-		transaction.commit();
-		session.close();
-
-		return person;
+		return (Person) new HibernateUtil().transact(new GetOperation(Person.class, id));
 	}
 
+	// public List<Person> getAllPerson() {
+	// 	Session session = sessionFactory.openSession();
+	// 	Transaction transaction = session.beginTransaction(); // --> refactor later(duplicate)
+	//
+	// 	List<Person> persons = session.createQuery("FROM Person p ORDER by p.id").list();
+	// 	transaction.commit();
+	// 	session.close();
+	//
+	// 	return persons;
+	// }
+
 	public List<Person> getAllPerson() {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction(); // --> refactor later(duplicate)
-
-		List<Person> persons = session.createQuery("FROM Person p ORDER by p.id").list();
-		transaction.commit();
-		session.close();
-
-		return persons;
+		Query result = (Query) new HibernateUtil().transact(new GetAllOperation("Person"));
+		return result.list();
 	}
 
 	public List<Role> retrieveRoles() {

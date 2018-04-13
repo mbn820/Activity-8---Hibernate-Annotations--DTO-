@@ -24,8 +24,8 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-	public static Object transact(Operation operation) {
-		sessionFactory = getSessionFactory();
+	public Object transact(Operation operation) {
+		sessionFactory = getSessionFactory(); // --> try catch
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
