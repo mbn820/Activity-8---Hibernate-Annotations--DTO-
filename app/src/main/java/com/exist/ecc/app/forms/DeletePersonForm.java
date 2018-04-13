@@ -1,5 +1,6 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.forms;
 
+import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.service.PersonDatabaseOperations;
 

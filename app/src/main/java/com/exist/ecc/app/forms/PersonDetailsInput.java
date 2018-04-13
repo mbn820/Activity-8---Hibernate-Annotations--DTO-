@@ -1,8 +1,9 @@
-package com.exist.ecc.app;
+package com.exist.ecc.app.forms;
 
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
+import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
