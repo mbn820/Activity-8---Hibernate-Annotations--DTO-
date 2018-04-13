@@ -34,7 +34,7 @@ public class PersonDao {
 		return person;
 	}
 
-	public List<Person> retrieveAllRecords() {
+	public List<Person> retrieveAllPerson() {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction(); // --> refactor later(duplicate)
 

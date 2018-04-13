@@ -5,7 +5,7 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Contact;
-import com.exist.ecc.core.dao.PersonDao;
+import com.exist.ecc.core.service.PersonDatabaseOperations;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
@@ -13,18 +13,31 @@ import java.util.HashSet;
 
 public class AddPersonForm {
 
-    public void show() {
+    public static void show() {
         Set<Role> roles = new HashSet<Role>();
 
         Name name = PersonDetailsInput.getNameInformation();
         Address address = PersonDetailsInput.getAddressInformation();
-        Date birthDate = PersonDetailsInput.getDateInformation();
-        Date dateHired = PersonDetailsInput.getDateInformation();
+        Date birthDate = PersonDetailsInput.getDateInformation("BIRTH DATE");
+        Date dateHired = PersonDetailsInput.getDateInformation("DATE HIRED");
         boolean currentlyEmployed = PersonDetailsInput.getEmploymentStatusInformation();
+        double gwa = PersonDetailsInput.getGwaInformation();
         roles = PersonDetailsInput.getRolesInformation(roles);
         Set<Contact> contacts = PersonDetailsInput.getContactInformation();
 
         ConsoleInputUtil.getAll("Press Enter to Continue.......");
+
+        Person person = new Person(name, address, birthDate, dateHired,
+                                   currentlyEmployed, gwa, roles, contacts);
+
+        save(person);
+    }
+
+    private static void save(Person person) {
+        new PersonDatabaseOperations().addPerson(person);
+        System.out.println(person + "has been saved to the database");
+        System.out.println("PERSON: " + person.getContacts());
+        System.out.println("PERSON: " + person.getRoles());
     }
 
 }

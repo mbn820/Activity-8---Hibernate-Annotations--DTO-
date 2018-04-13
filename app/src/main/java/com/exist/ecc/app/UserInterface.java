@@ -19,7 +19,7 @@ public class UserInterface {
         switch(choice) {
             case 1 : addNewPerson();
                      break;
-            case 2 : viewPersonRecords();
+            case 2 : findPersonRecords();
                      break;
             case 3 : updatePersonDetails();
                      break;
@@ -36,21 +36,25 @@ public class UserInterface {
 
     public static void addNewPerson() {
         System.out.println("---ADD NEW PERSON---");
-        new AddPersonForm().show();
+        AddPersonForm.show();
         menu();
     }
 
-    public static void viewPersonRecords() {
-        System.out.println("---VIEW PERSON RECORDS---");
+    public static void findPersonRecords() {
+        System.out.println("---FIND PERSON RECORDS---");
+        FindPersonForm.show();
+        menu();
     }
 
     public static void updatePersonDetails() {
         System.out.println("---UPDATE PERSON DETAILS---");
+        UpdatePersonForm.show();
+        menu();
     }
 
     public static void deletePersonRecords() {
         System.out.println("---DELETE PERSON RECORDS---");
-        new DeletePersonForm(personDao).show();
+        DeletePersonForm.show();
         menu();
     }
 
