@@ -1,6 +1,5 @@
 package com.exist.ecc.app;
 
-import com.exist.ecc.core.dao.PersonDao;
 import com.exist.ecc.core.service.PersonDatabaseOperations;
 import com.exist.ecc.app.forms.AddPersonForm;
 import com.exist.ecc.app.forms.DeletePersonForm;
@@ -8,8 +7,10 @@ import com.exist.ecc.app.forms.FindPersonForm;
 import com.exist.ecc.app.forms.UpdatePersonForm;
 
 
-public class UserInterface {
-    private static PersonDao personDao = new PersonDao();
+public class PersonManagementApp {
+    public static void main(String[] args) {
+        menu();
+    }
 
     public static void menu() {
         System.out.println("\n\n");
