@@ -33,7 +33,7 @@ public class PersonDetailsInput {
     }
 
     public static Date getDateInformation(String header) {
-		System.out.printf("**%s**", header);
+		System.out.printf("**%s**\n", header);
         int month = ConsoleInputUtil.getIntegerBetween("\tMonth: ", 1, 12);
         int day = ConsoleInputUtil.getIntegerBetween("\tDay:", 1, 30);
         int year = ConsoleInputUtil.getIntegerBetween("\tYear:", 1900, 2017);

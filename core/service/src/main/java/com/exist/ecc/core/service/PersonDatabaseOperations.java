@@ -4,10 +4,11 @@ import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.dao.PersonDao;
 import java.util.List;
+import java.util.Set;
 
 public class PersonDatabaseOperations {
-	public void addPerson(Person person) {
-		new PersonDao().addPerson(person);
+	public Integer addPerson(Person person) {
+		return new PersonDao().addPerson(person);
 	}
 
 	public Person getPerson(int id) {
@@ -41,12 +42,13 @@ public class PersonDatabaseOperations {
 	}
 
 	public void displayPersonInfo(Person person) {
-		System.out.printf("%-30s %-20s %-20s %-20s\n", person.getName(), person.getBirthDate(), person.getCurrentlyEmployed(), person.getGwa());
+		System.out.printf("%-4s %-30s %-20s %-20s %-20s\n", person.getId(), person.getName(), person.getBirthDate(),
+		                                                    person.getCurrentlyEmployed(), person.getGwa());
 	}
 
 	public void displayAllPerson() {
 		List<Person> persons = getAllPerson();
-		System.out.printf("%-30s %-20s %-20s %-20s\n", "NAME", "DATE OF BIRTH", "CURRENTLY_EMPLOYED", "GWA");
+		System.out.printf("%-4s %-30s %-20s %-20s %-20s\n", "ID", "NAME", "DATE OF BIRTH", "CURRENTLY_EMPLOYED", "GWA");
 		persons.forEach(p -> displayPersonInfo(p));
 	}
 }

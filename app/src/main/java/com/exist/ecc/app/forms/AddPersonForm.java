@@ -35,10 +35,8 @@ public class AddPersonForm {
     }
 
     private static void save(Person person) {
-        new PersonDatabaseOperations().addPerson(person);
-        System.out.println(person + "has been saved to the database");
-        System.out.println("PERSON: " + person.getContacts());
-        System.out.println("PERSON: " + person.getRoles());
+        Integer id = new PersonDatabaseOperations().addPerson(person);
+        System.out.println(person + "has been saved to the database with an id of: " + id);
     }
 
 }

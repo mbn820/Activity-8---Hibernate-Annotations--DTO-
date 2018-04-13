@@ -13,15 +13,21 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 
 public class PersonDao implements PersonDaoInterface {
-	private static SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(); // create HibernateUtil
+	private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-	public void addPerson(Person person) {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
+	// public Integer addPerson(Person person) {
+	// 	Session session = sessionFactory.openSession();
+	// 	Transaction transaction = session.beginTransaction();
+	//
+	// 	Integer id = (Integer) session.save(person);
+	// 	transaction.commit();
+	// 	session.close();
+	//
+	// 	return id;
+	// }
 
-		session.save(person);
-		transaction.commit();
-		session.close();
+	public Integer addPerson(Person person) {
+		return (Integer) HibernateUtil.transact(new AddPersonOperation(person));
 	}
 
 	public Person getPerson(int id) {
@@ -39,7 +45,7 @@ public class PersonDao implements PersonDaoInterface {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction(); // --> refactor later(duplicate)
 
-		List<Person> persons = session.createQuery("FROM Person").list();
+		List<Person> persons = session.createQuery("FROM Person p ORDER by p.id").list();
 		transaction.commit();
 		session.close();
 

@@ -34,7 +34,7 @@
 			<one-to-many class = "com.exist.ecc.core.model.Contact"/>
 		</set>
 
-		<set name = "roles" cascade = "save-update" table = "PERSON_ROLE">
+		<set name = "roles" cascade = "save-update" table = "PERSON_ROLE" fetch = "join">
 			<key column = "person_id"/>
 			<many-to-many column = "role_id" class = "com.exist.ecc.core.model.Role"/>
 		</set>

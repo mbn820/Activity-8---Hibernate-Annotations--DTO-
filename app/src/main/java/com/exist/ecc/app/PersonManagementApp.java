@@ -3,7 +3,7 @@ package com.exist.ecc.app;
 import com.exist.ecc.core.service.PersonDatabaseOperations;
 import com.exist.ecc.app.forms.AddPersonForm;
 import com.exist.ecc.app.forms.DeletePersonForm;
-import com.exist.ecc.app.forms.FindPersonForm;
+import com.exist.ecc.app.forms.ViewPersonForm;
 import com.exist.ecc.app.forms.UpdatePersonForm;
 
 
@@ -26,7 +26,7 @@ public class PersonManagementApp {
         switch(choice) {
             case 1 : addNewPerson();
                      break;
-            case 2 : findPersonRecords();
+            case 2 : viewPersonRecords();
                      break;
             case 3 : updatePersonDetails();
                      break;
@@ -47,9 +47,9 @@ public class PersonManagementApp {
         menu();
     }
 
-    public static void findPersonRecords() {
-        System.out.println("---FIND PERSON RECORDS---");
-        FindPersonForm.show();
+    public static void viewPersonRecords() {
+        System.out.println("---VIEW PERSON RECORDS---");
+        ViewPersonForm.show();
         menu();
     }
 

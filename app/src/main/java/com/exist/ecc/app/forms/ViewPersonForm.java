@@ -3,14 +3,14 @@ package com.exist.ecc.app.forms;
 import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.service.PersonDatabaseOperations;
 
-public class FindPersonForm {
+public class ViewPersonForm {
 	public static void show() {
 		displayOptions();
 
 		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 2);
 
 		switch(choice) {
-			case 1 : findPerson(); break;
+			case 1 : viewPerson(); break;
 			case 2 : viewAllPerson(); break;
 		}
 	}
@@ -20,7 +20,7 @@ public class FindPersonForm {
 		System.out.println("[2] View All Person");
 	}
 
-	public static void findPerson() {
+	public static void viewPerson() {
 		int targetPersonId = ConsoleInputUtil.getAnyInteger("Enter person id: ");
 		System.out.println("Found person with id: " + targetPersonId);
 		new PersonDatabaseOperations().displayPerson(targetPersonId);
