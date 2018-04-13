@@ -1,6 +1,7 @@
 package com.exist.ecc.app;
 
 import com.exist.ecc.core.model.Person;
+import com.exist.ecc.core.service.PersonDatabaseOperations;
 
 public class DeletePersonForm {
 	public static void show() {
@@ -8,10 +9,11 @@ public class DeletePersonForm {
 
 		ConsoleInputUtil.getAll("Press Enter to Continue.......");
 
-		delete(new Person());
+		delete(targetPersonId);
 	}
 
-	public static void delete(Person person) {
+	public static void delete(int id) {
+		new PersonDatabaseOperations().deletePerson(id);
 		System.out.println("Person has been deleted from the database");
 	}
 }

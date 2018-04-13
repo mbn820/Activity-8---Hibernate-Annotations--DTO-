@@ -1,6 +1,5 @@
 package com.exist.ecc.app;
 
-import com.exist.ecc.core.service.Test;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Name;
 

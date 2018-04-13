@@ -1,6 +1,7 @@
 package com.exist.ecc.app;
 
 import com.exist.ecc.core.dao.PersonDao;
+import com.exist.ecc.core.service.PersonDatabaseOperations;
 
 public class UserInterface {
     private static PersonDao personDao = new PersonDao();
@@ -60,6 +61,8 @@ public class UserInterface {
 
     public static void viewRoles() {
         System.out.println("---VIEW ROLES---");
+        new PersonDatabaseOperations().viewRoles();
+        menu();
     }
 
     public static void exit() {
