@@ -1,95 +1,32 @@
 package com.exist.ecc.core.dao;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.Query;
-import org.hibernate.cfg.Configuration;
-
 import java.util.List;
-
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
-import com.exist.ecc.core.model.Name;
-import com.exist.ecc.core.model.Address;
 
-public class PersonDao implements PersonDaoInterface {
-	private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-
-	// public Integer addPerson(Person person) {
-	// 	Session session = sessionFactory.openSession();
-	// 	Transaction transaction = session.beginTransaction();
-	//
-	// 	Integer id = (Integer) session.save(person);
-	// 	transaction.commit();
-	// 	session.close();
-	//
-	// 	return id;
-	// }
+public class PersonDao {
 
 	public Integer addPerson(Person person) {
-		return (Integer) new HibernateUtil().transact(new AddOperation(person));
+		return (Integer) new HibernateUtil().transact(session -> session.save(person));
 	}
-	//
-	// public Person getPerson(int id) {
-	// 	Session session = sessionFactory.openSession();
-	// 	Transaction transaction = session.beginTransaction();
-	//
-	// 	Person person = (Person) session.get(Person.class, id);
-	// 	transaction.commit();
-	// 	session.close();
-	//
-	// 	return person;
-	// }
 
 	public Person getPerson(int id) {
-		return (Person) new HibernateUtil().transact(new GetOperation(Person.class, id));
+		return (Person) new HibernateUtil().transact(session -> session.get(Person.class, id));
 	}
-
-	// public List<Person> getAllPerson() {
-	// 	Session session = sessionFactory.openSession();
-	// 	Transaction transaction = session.beginTransaction(); // --> refactor later(duplicate)
-	//
-	// 	List<Person> persons = session.createQuery("FROM Person p ORDER by p.id").list();
-	// 	transaction.commit();
-	// 	session.close();
-	//
-	// 	return persons;
-	// }
 
 	public List<Person> getAllPerson() {
-		Query result = (Query) new HibernateUtil().transact(new GetAllOperation("Person"));
-		return result.list();
-	}
-
-	public List<Role> retrieveRoles() {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction(); // --> refactor later(duplicate)
-
-		List<Role> roles = session.createQuery("FROM Role").list();
-		transaction.commit();
-		session.close();
-
-		return roles;
+		return (List<Person>) new HibernateUtil().transact(session -> session.createQuery("FROM Person").list());
 	}
 
 	public void updatePerson(Person person) {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
-
-		session.update(person);
-		transaction.commit();
-		session.close();
+		new HibernateUtil().transact(session -> { session.update(person); return null; });
 	}
 
 	public void deletePerson(int id) {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
+		new HibernateUtil().transact( session -> { session.delete(getPerson(id)); return null; } );
+	}
 
-		Person person = (Person) session.get(Person.class, id);
-
-		session.delete(person);
-		transaction.commit();
-		session.close();
+	public List<Role> retrieveRoles() {
+		return (List<Role>) new HibernateUtil().transact(session -> session.createQuery("FROM Role").list());
 	}
 }

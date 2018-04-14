@@ -5,7 +5,8 @@ import com.exist.ecc.core.service.PersonDatabaseOperations;
 
 public class ViewPersonForm {
 	public static void show() {
-		displayOptions();
+		System.out.println("[1] Find Person");
+		System.out.println("[2] View All Person");
 
 		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 2);
 
@@ -13,11 +14,6 @@ public class ViewPersonForm {
 			case 1 : viewPerson(); break;
 			case 2 : viewAllPerson(); break;
 		}
-	}
-
-	public static void displayOptions() {
-		System.out.println("[1] Find Person");
-		System.out.println("[2] View All Person");
 	}
 
 	public static void viewPerson() {

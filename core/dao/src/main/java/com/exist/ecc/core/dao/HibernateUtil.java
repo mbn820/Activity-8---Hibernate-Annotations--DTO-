@@ -29,12 +29,13 @@ public class HibernateUtil {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 
-		Object result = operation.operate(session);
+		Object result = operation.execute(session);
 
 		transaction.commit();
 		session.close();
 
 		return result;
 	}
+
 
 }
