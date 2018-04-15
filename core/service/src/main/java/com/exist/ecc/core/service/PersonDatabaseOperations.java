@@ -15,8 +15,8 @@ public class PersonDatabaseOperations {
 		return new PersonDao().getPerson(id);
 	}
 
-	public List<Person> getAllPerson() {
-		return new PersonDao().getAllPerson();
+	public List<Person> getAllPerson(String orderBy) {
+		return new PersonDao().getAllPerson(orderBy);
 	}
 
 	public void deletePerson(int id) {
@@ -42,12 +42,12 @@ public class PersonDatabaseOperations {
 	}
 
 	public void displayPersonInfo(Person person) {
-		System.out.printf("%-4s %-30s %-20s %-20s %-20s\n", person.getId(), person.getName(), person.getBirthDate(),
-		                                                    person.getCurrentlyEmployed(), person.getGwa());
+		System.out.printf("%-4s %-30s %-20s %-20s %-20s %-20s\n", person.getId(), person.getName(), person.getBirthDate(),
+		                                                    person.getCurrentlyEmployed(), person.getGwa(), person.getRoles());
 	}
 
-	public void displayAllPerson() {
-		List<Person> persons = getAllPerson();
+	public void displayAllPerson(String orderBy) {
+		List<Person> persons = getAllPerson(orderBy);
 		System.out.printf("%-4s %-30s %-20s %-20s %-20s\n", "ID", "NAME", "DATE OF BIRTH", "CURRENTLY_EMPLOYED", "GWA");
 		persons.forEach(p -> displayPersonInfo(p));
 	}

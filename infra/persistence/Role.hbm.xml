@@ -12,7 +12,7 @@
 		<property name = "roleName" column = "role_name" type = "string"/>
 
 
-		<set name = "persons" cascade = "save-update" table = "PER_ROLE" inverse = "true">
+		<set name = "persons" cascade = "save-update" table = "PER_ROLE" inverse = "true" lazy = "false">
 			<key column = "role_id"/>
 			<many-to-many column = "person_id" class = "com.exist.ecc.core.model.Person"/>
 		</set>

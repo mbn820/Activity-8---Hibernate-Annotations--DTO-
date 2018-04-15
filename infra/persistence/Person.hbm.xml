@@ -29,12 +29,12 @@
 		<property name = "currentlyEmployed" column = "currently_employed" type = "boolean"/>
 		<property name = "gwa"               column = "gwa"                type = "double"/>
 
-		<set name = "contacts" cascade = "all">
+		<set name = "contacts" cascade = "all" lazy = "false">
 			<key column = "person_id"/>
 			<one-to-many class = "com.exist.ecc.core.model.Contact"/>
 		</set>
 
-		<set name = "roles" cascade = "save-update" table = "PERSON_ROLE" fetch = "join">
+		<set name = "roles" cascade = "save-update" table = "PERSON_ROLE" lazy = "false">
 			<key column = "person_id"/>
 			<many-to-many column = "role_id" class = "com.exist.ecc.core.model.Role"/>
 		</set>

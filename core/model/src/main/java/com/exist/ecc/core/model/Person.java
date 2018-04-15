@@ -15,10 +15,7 @@ public class Person {
     private Set<Role> roles;
     private Set<Contact> contacts;
 
-    public Person() {
-
-    }
-
+    public Person() {}
     public Person(Name name, Address address, Date birthDate, Date dateHired,
                   boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
 

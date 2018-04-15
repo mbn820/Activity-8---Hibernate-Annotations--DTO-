@@ -31,15 +31,17 @@ public class ViewPersonForm {
 
 		switch(choice) {
 			case 1 :
-				     System.out.println("ORDER BY LAST NAME");
-					 new PersonDatabaseOperations().displayAllPerson(); // --> "ORDER BY lastName"
-			         break;
-			case 2 : System.out.println("ORDER BY GWA");
-		             new PersonDatabaseOperations().displayAllPerson(); // --> "ORDER BY lastName"
-			         break;
-			case 3 : System.out.println("ORDER BY DATE HIRED");
-					 new PersonDatabaseOperations().displayAllPerson(); // --> "ORDER BY lastName"
-				     break;
+				System.out.println("ORDER BY LAST NAME");
+				new PersonDatabaseOperations().displayAllPerson("name.lastName");
+				break;
+			case 2 :
+			      System.out.println("ORDER BY GWA");
+				new PersonDatabaseOperations().displayAllPerson("gwa");
+				break;
+			case 3 :
+			      System.out.println("ORDER BY DATE HIRED");
+				new PersonDatabaseOperations().displayAllPerson("dateHired");
+				break;
 		}
 	}
 }

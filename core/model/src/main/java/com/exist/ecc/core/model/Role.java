@@ -7,10 +7,7 @@ public class Role {
 	private String roleName;
 	private Set<Person> persons;
 
-	public Role() {
-
-	}
-
+	public Role() {}
 	public Role(String roleName) {
 		this.roleName = roleName;
 	}
