@@ -13,6 +13,10 @@ import org.apache.commons.lang3.time.DateUtils;
 
 public class PersonDetailsInput {
 
+	public static String formatter(String str) {
+		return String.format("\t%-20s: ", str);
+	}
+
 	public static Name getNameInformation() {
 		System.out.println("**NAME**");
         String firstName = ConsoleInputUtil.getAnyString( formatter("First Name") );
@@ -23,10 +27,6 @@ public class PersonDetailsInput {
 
         return new Name(firstName, middleName, lastName, suffix, title);
     }
-
-	public static String formatter(String str) {
-		return String.format("\t%-18s: ", str);
-	}
 
     public static Address getAddressInformation() {
 		System.out.println("**ADDRESS**");
@@ -66,7 +66,7 @@ public class PersonDetailsInput {
 
     public static double getGwaInformation() {
 		System.out.println("**GWA**");
-        return ConsoleInputUtil.getDoubleBetween( formatter("Enter GWA [1.0 - 5.0]"), 1.0, 5.0);
+        return ConsoleInputUtil.getDoubleBetween( formatter("Enter GWA [1.0-5.0]"), 1.0, 5.0);
     }
 
 	public static Role getSingleRoleInformation() {
@@ -109,7 +109,7 @@ public class PersonDetailsInput {
 			         pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 					 break;
 			case 2 : contactType = "phone";
-					 pattern = "\\d{10}";
+					 pattern = "\\d{10,11}";
 					 break;
 			case 3 : contactType = "landline";
 			         pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";

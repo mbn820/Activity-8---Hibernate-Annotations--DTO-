@@ -36,7 +36,7 @@
 			<one-to-many class = "com.exist.ecc.core.model.Contact"/>
 		</set>
 
-		<set name = "roles" cascade = "save-update" table = "PERSON_ROLE" lazy = "false">
+		<set name = "roles" cascade = "all" table = "PERSON_ROLE" lazy = "false">
 			<key column = "person_id"/>
 			<many-to-many column = "role_id" class = "com.exist.ecc.core.model.Role"/>
 		</set>
