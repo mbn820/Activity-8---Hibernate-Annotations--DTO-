@@ -19,10 +19,12 @@
 
 		<many-to-one
 			name = "address"
-			column = "address_id" 
+			column = "address_id"
 			unique = "true"
 			class = "com.exist.ecc.core.model.Address" not-null="true"
-			cascade = "all"/>
+			cascade = "all"
+			lazy = "false"
+			/>
 
 		<property name = "birthDate"         column = "birth_date"         type = "date"/>
 		<property name = "dateHired"         column = "date_hired"         type = "date"/>

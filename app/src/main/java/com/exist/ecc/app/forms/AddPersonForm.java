@@ -37,7 +37,7 @@ public class AddPersonForm {
 
     private static void save(Person person) {
         Integer id = new PersonService().addPerson(person);
-        System.out.println(person + "has been saved to the database with an id of: " + id);
+        System.out.println(person + " has been saved to the database with an id of: " + id);
     }
 
 }

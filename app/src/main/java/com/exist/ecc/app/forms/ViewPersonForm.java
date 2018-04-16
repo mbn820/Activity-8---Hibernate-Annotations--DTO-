@@ -2,9 +2,12 @@ package com.exist.ecc.app.forms;
 
 import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.Person;
+import com.exist.ecc.core.model.Contact;
+import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.service.PersonUtil;
+import com.exist.ecc.core.util.PersonUtil;
 import java.util.List;
+import java.util.Set;
 
 public class ViewPersonForm {
 	public static void show() {
@@ -29,6 +32,7 @@ public class ViewPersonForm {
 		System.out.println(PersonUtil.HEADER);
 		PersonUtil.printInfo(targetPerson);
 
+		viewContactOrAddress(targetPerson);
 	}
 
 	public static void  viewAllPerson(){
@@ -38,7 +42,7 @@ public class ViewPersonForm {
 		System.out.println("[2] Last Name");
 		System.out.println("[3] GWA");
 		System.out.println("[4] Date Hired");
-		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 3);
+		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 4);
 
 		switch(choice) {
 			case 1 :
@@ -62,5 +66,33 @@ public class ViewPersonForm {
 				PersonUtil.printInfo(persons);
 				break;
 		}
+	}
+
+	public static void viewContactOrAddress(Person person) {
+		System.out.println("[1] View Contacts");
+		System.out.println("[2] View Address");
+		System.out.println("[3] Exit");
+
+		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 3);
+
+		switch(choice) {
+			case 1 : viewContacts(person); break;
+			case 2 : viewAddress(person); break;
+			case 3 : break;
+		}
+	}
+
+	public static void viewContacts(Person person) {
+		Set<Contact> contacts = person.getContacts();
+		System.out.printf("%s's Contacts: \n", person.getName().getFirstName());
+		contacts.forEach(c -> System.out.println("\t" + c));
+		viewContactOrAddress(person);
+	}
+
+	public static void viewAddress(Person person) {
+		Address address = person.getAddress();
+		System.out.printf("%s's Address: \n", person.getName().getFirstName());
+		System.out.println(address);
+		viewContactOrAddress(person);
 	}
 }

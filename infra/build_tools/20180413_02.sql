@@ -5,13 +5,10 @@ CREATE TABLE PERSON (
 	last_name TEXT NOT NULL,
 	suffix TEXT,
 	title TEXT,
-	street_number INT NOT NULL,
-	barangay TEXT NOT NULL,
-	municipality TEXT NOT NULL,
-	zipcode TEXT NOT NULL,
 	birth_date DATE NOT NULL,
 	date_hired DATE NOT NULL,
 	currently_employed BOOLEAN,
 	gwa DOUBLE PRECISION,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	FOREIGN KEY (address_id) REFERENCES address (address_id)
 );

@@ -15,51 +15,63 @@ public class PersonDetailsInput {
 
 	public static Name getNameInformation() {
 		System.out.println("**NAME**");
-        String firstName = ConsoleInputUtil.getAnyString("\tFirst name: ");
-        String middleName = ConsoleInputUtil.getAnyString("\tMiddle name: ");
-        String lastName = ConsoleInputUtil.getAnyString("\tLast name: ");
+        String firstName = ConsoleInputUtil.getAnyString( formatter("First Name") );
+        String middleName = ConsoleInputUtil.getAnyString( formatter("Middle Name") );
+        String lastName = ConsoleInputUtil.getAnyString( formatter("Last Name") );
+		String suffix = ConsoleInputUtil.getAnyString( formatter("Suffix") );
+		String title = ConsoleInputUtil.getAnyString( formatter("Title") );
 
-        return new Name(firstName, middleName, lastName);
+        return new Name(firstName, middleName, lastName, suffix, title);
     }
+
+	public static String formatter(String str) {
+		return String.format("\t%-18s: ", str);
+	}
 
     public static Address getAddressInformation() {
 		System.out.println("**ADDRESS**");
-        int streetNumber = ConsoleInputUtil.getAnyInteger("\tStreet Number: ");
-        String barangay = ConsoleInputUtil.getAnyString("\tBarangay: ");
-        String municipality = ConsoleInputUtil.getAnyString("\tMunicipality: ");
-        String zipcode = ConsoleInputUtil.getAnyString("\tZipcode: ");
+        int streetNumber = ConsoleInputUtil.getAnyInteger( formatter("Street Number") );
+        String barangay = ConsoleInputUtil.getAnyString( formatter("Barangay") );
+        String municipality = ConsoleInputUtil.getAnyString( formatter("Municipality") );
+        String zipcode = ConsoleInputUtil.getDesiredPattern( formatter("Zipcode"), "[0-9]{4}");
 
         return new Address(streetNumber, barangay, municipality, zipcode);
     }
 
     public static Date getDateInformation(String header) {
 		System.out.printf("**%s**\n", header);
-        int month = ConsoleInputUtil.getIntegerBetween("\tMonth: ", 1, 12);
-        int day = ConsoleInputUtil.getIntegerBetween("\tDay:", 1, 30);
-        int year = ConsoleInputUtil.getIntegerBetween("\tYear:", 1900, 2017);
+        int month = ConsoleInputUtil.getIntegerBetween( formatter("Month [1-12]"), 1, 12 );
+        int day = ConsoleInputUtil.getIntegerBetween( formatter("Day   [1-31]"), 1, 31 );
+        int year = ConsoleInputUtil.getIntegerBetween( formatter("Year  [yyyy]"), 1900, 2018 );
 
         Date date = new Date();
-        date = DateUtils.setMonths(date, month - 1);
-        date = DateUtils.setDays(date, day);
-        date = DateUtils.setYears(date, year);
+
+		try {
+	        date = DateUtils.setMonths(date, month - 1);
+	        date = DateUtils.setDays(date, day);
+	        date = DateUtils.setYears(date, year);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Invalid Date");
+			getDateInformation(header);
+		}
 
 		return date;
     }
 
     public static boolean getEmploymentStatusInformation() {
 		System.out.println("**EMPLOYMENT**");
-        String choice = ConsoleInputUtil.getDesiredString("\tCurrently Employed? [y/n]: ", "y", "n");
+        String choice = ConsoleInputUtil.getDesiredString( formatter("Currently Employed? [y/n]"), "y", "n" );
         return (choice.equals("y"));
     }
 
     public static double getGwaInformation() {
 		System.out.println("**GWA**");
-        return ConsoleInputUtil.getDoubleBetween("\tEnter GWA: ", 1.0, 5.0);
+        return ConsoleInputUtil.getDoubleBetween( formatter("Enter GWA [1.0 - 5.0]"), 1.0, 5.0);
     }
 
 	public static Role getSingleRoleInformation() {
 		System.out.println("**ROLE**");
-		String roleName = ConsoleInputUtil.getAnyString("\tRole: ");
+		String roleName = ConsoleInputUtil.getAnyString( formatter("Role") );
 		return new Role(roleName);
 	}
 
@@ -75,10 +87,10 @@ public class PersonDetailsInput {
 
 		return roles;
 	}
-	
-	public static Contact getSingleContact(String contactType) {
+
+	public static Contact getSingleContact(String contactType, String pattern) {
 		System.out.println("**CONTACT**");
-		String details = ConsoleInputUtil.getAnyString("\t" + contactType + " : ");
+		String details = ConsoleInputUtil.getDesiredPattern( formatter(contactType), pattern );
 		return new Contact(contactType, details);
 	}
 
@@ -88,14 +100,22 @@ public class PersonDetailsInput {
 		System.out.println("[2] Phone");
 		System.out.println("[3] Landline");
 		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 3);
+
 		String contactType = null;
+		String pattern = null;
 
 		switch(choice) {
-			case 1 : contactType = "email"; break;
-			case 2 : contactType = "phone"; break;
-			case 3 : contactType = "landline"; break;
+			case 1 : contactType = "email";
+			         pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+					 break;
+			case 2 : contactType = "phone";
+					 pattern = "\\d{10}";
+					 break;
+			case 3 : contactType = "landline";
+			         pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+			         break;
 		}
-		contacts.add(getSingleContact(contactType));
+		contacts.add(getSingleContact(contactType, pattern));
 
 		String decision = ConsoleInputUtil.getDesiredString("\tAdd more contact or proceed? [a/p]:", "a", "p");
 

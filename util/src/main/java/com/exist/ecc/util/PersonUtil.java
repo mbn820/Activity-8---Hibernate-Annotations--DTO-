@@ -1,4 +1,4 @@
-package com.exist.ecc.core.service;
+package com.exist.ecc.core.util;
 
 import com.exist.ecc.core.model.Person;
 import java.util.List;

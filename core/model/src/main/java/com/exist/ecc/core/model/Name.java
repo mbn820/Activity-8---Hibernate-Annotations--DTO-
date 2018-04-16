@@ -11,10 +11,6 @@ public class Name {
 
     }
 
-    public Name(String firstName, String middleName, String lastName) {
-        this(firstName, middleName, lastName, "", "");
-    }
-
     public Name(String firstName, String middleName, String lastName, String suffix, String title) {
         this.firstName = firstName;
         this.lastName = lastName;
