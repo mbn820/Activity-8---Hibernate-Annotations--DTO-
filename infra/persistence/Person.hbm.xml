@@ -24,7 +24,7 @@
 			class = "com.exist.ecc.core.model.Address" not-null="true"
 			cascade = "all"
 			lazy = "false"
-			/>
+		/>
 
 		<property name = "birthDate"         column = "birth_date"         type = "date"/>
 		<property name = "dateHired"         column = "date_hired"         type = "date"/>
@@ -40,6 +40,5 @@
 			<key column = "person_id"/>
 			<many-to-many column = "role_id" class = "com.exist.ecc.core.model.Role"/>
 		</set>
-
 	</class>
 </hibernate-mapping>
