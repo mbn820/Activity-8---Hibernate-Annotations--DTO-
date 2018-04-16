@@ -1,6 +1,7 @@
 package com.exist.ecc.core.model;
 
 public class Address {
+    private int addressId;
     private int streetNumber;
     private String barangay;
     private String municipality;
@@ -18,12 +19,17 @@ public class Address {
     }
 
     // getters
+    public int getAddressId() { return addressId; }
     public int getStreetNumber() { return streetNumber; }
     public String getBarangay() { return barangay; }
     public String getMunicipality() { return municipality; }
     public String getZipcode() { return zipcode; }
 
     // setters
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
+
     public void setStreetNumber(int streetNumber) {
         this.streetNumber = streetNumber;
     }

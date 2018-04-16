@@ -25,14 +25,22 @@ public class HibernateUtil {
     }
 
 	public Object transact(Operation operation) {
-		sessionFactory = getSessionFactory(); // --> try catch
+		sessionFactory = getSessionFactory();
+
 		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
+		Transaction transaction = null;
+		Object result = null;
 
-		Object result = operation.execute(session);
-
-		transaction.commit();
-		session.close();
+		try {
+			transaction = session.beginTransaction();
+			result = operation.execute(session);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			throw e;
+		} finally {
+			session.close();
+		}
 
 		return result;
 	}

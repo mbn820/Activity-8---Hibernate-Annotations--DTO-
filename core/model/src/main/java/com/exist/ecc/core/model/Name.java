@@ -52,6 +52,6 @@ public class Name {
     }
 
     public String toString() {
-        return String.format("%s %c. %s %s, %s", firstName, middleName.charAt(0), lastName, suffix, title);
+        return String.format("%s %c. %s", firstName, middleName.charAt(0), lastName);
     }
 }

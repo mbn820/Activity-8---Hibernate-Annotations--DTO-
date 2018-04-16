@@ -6,7 +6,7 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Contact;
-import com.exist.ecc.core.service.PersonDatabaseOperations;
+import com.exist.ecc.core.service.PersonService;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class AddPersonForm {
 
     public static void show() {
         Set<Role> roles = new HashSet<Role>();
+        Set<Contact> contacts = new HashSet<Contact>();
 
         Name name = PersonDetailsInput.getNameInformation();
         Address address = PersonDetailsInput.getAddressInformation();
@@ -24,7 +25,7 @@ public class AddPersonForm {
         boolean currentlyEmployed = PersonDetailsInput.getEmploymentStatusInformation();
         double gwa = PersonDetailsInput.getGwaInformation();
         roles = PersonDetailsInput.getRolesInformation(roles);
-        Set<Contact> contacts = PersonDetailsInput.getContactInformation();
+        contacts = PersonDetailsInput.getContactInformation(contacts);
 
         ConsoleInputUtil.getAll("Press Enter to Continue.......");
 
@@ -35,7 +36,7 @@ public class AddPersonForm {
     }
 
     private static void save(Person person) {
-        Integer id = new PersonDatabaseOperations().addPerson(person);
+        Integer id = new PersonService().addPerson(person);
         System.out.println(person + "has been saved to the database with an id of: " + id);
     }
 

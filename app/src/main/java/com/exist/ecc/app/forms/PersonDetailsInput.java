@@ -75,19 +75,35 @@ public class PersonDetailsInput {
 
 		return roles;
 	}
+	
+	public static Contact getSingleContact(String contactType) {
+		System.out.println("**CONTACT**");
+		String details = ConsoleInputUtil.getAnyString("\t" + contactType + " : ");
+		return new Contact(contactType, details);
+	}
 
-	public static Set<Contact> getContactInformation() {
-		System.out.println("**CONTACTS**");
-		Set<Contact> contacts = new HashSet<Contact>();
+	public static Set<Contact> getContactInformation(Set<Contact> contacts) {
+		System.out.println("Choose contact type to add: ");
+		System.out.println("[1] Email");
+		System.out.println("[2] Phone");
+		System.out.println("[3] Landline");
+		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 3);
+		String contactType = null;
 
-		String emailDetails = ConsoleInputUtil.getAnyString("\tEmail address: ");
-		contacts.add(new Contact("email", emailDetails));
+		switch(choice) {
+			case 1 : contactType = "email"; break;
+			case 2 : contactType = "phone"; break;
+			case 3 : contactType = "landline"; break;
+		}
+		contacts.add(getSingleContact(contactType));
 
-		String phoneDetails = ConsoleInputUtil.getAnyString("\tPhone: ");
-		contacts.add(new Contact("phone", phoneDetails));
+		String decision = ConsoleInputUtil.getDesiredString("\tAdd more contact or proceed? [a/p]:", "a", "p");
 
-		String landLineDetails = ConsoleInputUtil.getAnyString("\tLandline: ");
-		contacts.add(new Contact("landline", landLineDetails));
+		switch(decision) {
+			case "a" : getContactInformation(contacts);
+			           break;
+			case "p" : break;
+		}
 
 		return contacts;
 	}

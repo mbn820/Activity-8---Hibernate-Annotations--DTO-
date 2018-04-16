@@ -6,7 +6,7 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Role;
-import com.exist.ecc.core.service.PersonDatabaseOperations;
+import com.exist.ecc.core.service.PersonService;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
@@ -19,7 +19,12 @@ public class UpdatePersonForm {
 
 		int targetPersonId = ConsoleInputUtil.getAnyInteger("Enter person id: ");
 
-		Person targetPerson = new PersonDatabaseOperations().getPerson(targetPersonId);
+		Person targetPerson = new PersonService().getPerson(targetPersonId);
+		
+		if(targetPerson == null) {
+			System.out.println("Record does not exist");
+			return;
+		}
 
 		displayOptions();
 
@@ -50,8 +55,17 @@ public class UpdatePersonForm {
 				double newGwa = PersonDetailsInput.getGwaInformation();
 				targetPerson.setGwa(newGwa);
 				break;
-			case 7 : // PersonDetailsInput.getRolesInformation(roles); break;
-			case 8 : break; // PersonDetailsInput.getContactInformation(); break;
+			case 7 :
+				System.out.println("Add Roles");
+				Set<Role> newRoles = PersonDetailsInput.getRolesInformation(targetPerson.getRoles());
+				targetPerson.getRoles().addAll(newRoles);
+				break;
+
+			case 8 :
+				System.out.println("Add Contact Information");
+				Set<Contact> newContacts = PersonDetailsInput.getContactInformation(targetPerson.getContacts());
+				targetPerson.getContacts().addAll(newContacts);
+				break;
 		}
 
 		ConsoleInputUtil.getAll("Press Enter to Continue.......");
@@ -74,7 +88,7 @@ public class UpdatePersonForm {
 	}
 
 	public static void update(Person person) {
-		new PersonDatabaseOperations().updatePerson(person);
+		new PersonService().updatePerson(person);
 		System.out.println("Person has been updated");
 	}
 }

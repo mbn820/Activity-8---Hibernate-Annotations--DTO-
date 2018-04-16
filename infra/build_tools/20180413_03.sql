@@ -1,0 +1,8 @@
+CREATE TABLE CONTACT (
+	id INT NOT NULL,
+	type TEXT NOT NULL,
+	detail TEXT NOT NULL,
+	person_id INT,
+	FOREIGN KEY(person_id) references PERSON(id) ON DELETE CASCADE,
+	PRIMARY KEY(id)
+);

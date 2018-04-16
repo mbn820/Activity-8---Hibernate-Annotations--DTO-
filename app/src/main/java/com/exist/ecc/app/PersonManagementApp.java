@@ -1,6 +1,6 @@
 package com.exist.ecc.app;
 
-import com.exist.ecc.core.service.PersonDatabaseOperations;
+import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.app.forms.AddPersonForm;
 import com.exist.ecc.app.forms.DeletePersonForm;
 import com.exist.ecc.app.forms.ViewPersonForm;
@@ -67,7 +67,7 @@ public class PersonManagementApp {
 
     public static void viewRoles() {
         System.out.println("---VIEW ROLES---");
-        new PersonDatabaseOperations().viewRoles();
+        new PersonService().viewRoles();
         menu();
     }
 
