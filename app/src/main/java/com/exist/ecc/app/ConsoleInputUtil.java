@@ -36,12 +36,12 @@ public class ConsoleInputUtil {
 		return correctInput;
 	}
 
-	public static String getDesiredPattern(String message, String pattern) {
+	public static String getDesiredPattern(String message, String pattern, String errorMsg) {
 		String correctInput;
 		do {
 			correctInput = getAnyString(message);
 			if(!correctInput.matches(pattern)) {
-				System.out.println("Invalid Input");
+				System.out.println(errorMsg);
 			}
 		} while (!correctInput.matches(pattern));
 		return correctInput;

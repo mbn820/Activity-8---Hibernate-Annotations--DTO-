@@ -80,6 +80,7 @@ public class Person {
 
     public void addRole(Role role) {
         roles.add(role);
+        role.getPersons().add(this);
     }
 
     public void addContact(Contact contact) {

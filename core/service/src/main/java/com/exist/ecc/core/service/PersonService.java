@@ -27,11 +27,27 @@ public class PersonService {
 		new PersonDao().updatePerson(person);
 	}
 
+	public boolean isEmpty() {
+		return new PersonDao().getAllPerson("id").isEmpty();
+	}
+
+	public void addRole(Role role) {
+		List<Role> existingRoles = new PersonDao().getAllRoles();
+		existingRoles.forEach(existingRole -> {
+			if(role.equals(existingRole)) {
+				role.setId(existingRole.getId());
+				role.getPersons().addAll(existingRole.getPersons());
+				new PersonDao().addRole(role);
+				return;
+			}
+		});
+	}
+
 	////////////////////////////////////////////////////////
 
 	public void viewRoles() {
-		List<String> roles = new PersonDao().getRoles();
-		System.out.println("ROLE          PERSONS");
-		roles.forEach(System.out :: println);
+		List<Role> roles = new PersonDao().getRoles();
+		System.out.println("Roles");
+		roles.forEach( role -> System.out.printf("%s\n", role.getRoleName()) );
 	}
 }

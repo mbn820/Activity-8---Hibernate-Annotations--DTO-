@@ -11,8 +11,8 @@
 
 	    <component name = "name" class = "com.exist.ecc.core.model.Name">
 			<property name = "firstName"  column = "first_name"  type = "string" not-null = "true"/>
-			<property name = "middleName" column = "middle_name" type = "string"/>
-			<property name = "lastName"   column = "last_name"   type = "string"/>
+			<property name = "middleName" column = "middle_name" type = "string" not-null = "true"/>
+			<property name = "lastName"   column = "last_name"   type = "string" not-null = "true"/>
 			<property name = "suffix"     column = "suffix"      type = "string"/>
 			<property name = "title"      column = "title"       type = "string"/>
 		</component>
@@ -26,9 +26,9 @@
 			lazy = "false"
 		/>
 
-		<property name = "birthDate"         column = "birth_date"         type = "date"/>
-		<property name = "dateHired"         column = "date_hired"         type = "date"/>
-		<property name = "currentlyEmployed" column = "currently_employed" type = "boolean"/>
+		<property name = "birthDate"         column = "birth_date"         type = "date"    not-null = "true"/>
+		<property name = "dateHired"         column = "date_hired"         type = "date"    not-null = "true"/>
+		<property name = "currentlyEmployed" column = "currently_employed" type = "boolean" not-null = "true"/>
 		<property name = "gwa"               column = "gwa"                type = "double"/>
 
 		<set name = "contacts" cascade = "all" lazy = "false">

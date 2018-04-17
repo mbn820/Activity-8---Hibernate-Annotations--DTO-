@@ -13,6 +13,29 @@ public class PersonManagementApp {
     }
 
     public static void menu() {
+        if(new PersonService().isEmpty()) {
+            showAddAndExitOnly();
+        } else {
+            showAllOptions();
+        }
+    }
+
+    public static void showAddAndExitOnly() {
+        System.out.println("\n\n");
+        System.out.println("[1] Add new Person");
+        System.out.println("[2] Exit");
+
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 2);
+
+        switch(choice) {
+            case 1 : addNewPerson();
+                     break;
+            case 2 : exit();
+                     break;
+        }
+    }
+
+    public static void showAllOptions() {
         System.out.println("\n\n");
         System.out.println("[1] Add new Person");
         System.out.println("[2] View Person records");

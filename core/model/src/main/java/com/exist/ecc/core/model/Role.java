@@ -1,11 +1,13 @@
 package com.exist.ecc.core.model;
 
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Objects;
 
 public class Role {
 	private int id;
 	private String roleName;
-	private Set<Person> persons;
+	private Set<Person> persons = new HashSet<Person>();
 
 	public Role() {}
 	public Role(String roleName) {
@@ -28,21 +30,24 @@ public class Role {
 		this.persons = persons;
 	}
 
+	public void addPerson(Person person) {
+		persons.add(person);
+		person.getRoles().add(this);
+	}
+
 	public boolean equals(Object obj) {
 		if (obj == null) return false;
 		if (!this.getClass().equals(obj.getClass())) return false;
 
-		Role obj2 = (Role)obj;
-		if((this.id == obj2.getId()) && (this.roleName.equals(obj2.getRoleName()))) {
+		Role otherRole = (Role)obj;
+		if( this.roleName.equals(otherRole.getRoleName()) ) {
 			return true;
 		}
 		return false;
 	}
 
 	public int hashCode() {
-		int tmp = 0;
-		tmp = (id + roleName).hashCode();
-		return tmp;
+		return Objects.hash(roleName);
 	}
 
 	public String toString() {

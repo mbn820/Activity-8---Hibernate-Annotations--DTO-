@@ -33,7 +33,7 @@ public class PersonDetailsInput {
         int streetNumber = ConsoleInputUtil.getAnyInteger( formatter("Street Number") );
         String barangay = ConsoleInputUtil.getAnyString( formatter("Barangay") );
         String municipality = ConsoleInputUtil.getAnyString( formatter("Municipality") );
-        String zipcode = ConsoleInputUtil.getDesiredPattern( formatter("Zipcode"), "[0-9]{4}");
+        String zipcode = ConsoleInputUtil.getDesiredPattern( formatter("Zipcode"), "[0-9]{4}", "Invalid Input | Please enter 4 digit zipcode");
 
         return new Address(streetNumber, barangay, municipality, zipcode);
     }
@@ -88,9 +88,9 @@ public class PersonDetailsInput {
 		return roles;
 	}
 
-	public static Contact getSingleContact(String contactType, String pattern) {
+	public static Contact getSingleContact(String contactType, String pattern, String errorMsg) {
 		System.out.println("**CONTACT**");
-		String details = ConsoleInputUtil.getDesiredPattern( formatter(contactType), pattern );
+		String details = ConsoleInputUtil.getDesiredPattern( formatter(contactType), pattern, errorMsg );
 		return new Contact(contactType, details);
 	}
 
@@ -103,19 +103,23 @@ public class PersonDetailsInput {
 
 		String contactType = null;
 		String pattern = null;
+		String errorMsg = null;
 
 		switch(choice) {
 			case 1 : contactType = "email";
 			         pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+					 errorMsg = "Invalid input | Correct Sample Format : sample@mail.com";
 					 break;
 			case 2 : contactType = "phone";
 					 pattern = "\\d{10,11}";
+					 errorMsg = "Invalid input | Please Enter 10 - 11 digit cellphone number";
 					 break;
 			case 3 : contactType = "landline";
 			         pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+					 errorMsg = "Invalid input | Correct Formats : 123-123-1111, 1234567890, (123)123-1111";
 			         break;
 		}
-		contacts.add(getSingleContact(contactType, pattern));
+		contacts.add(getSingleContact(contactType, pattern, errorMsg));
 
 		String decision = ConsoleInputUtil.getDesiredString("\tAdd more contact or proceed? [a/p]:", "a", "p");
 

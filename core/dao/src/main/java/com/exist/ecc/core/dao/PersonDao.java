@@ -26,7 +26,15 @@ public class PersonDao implements PersonDaoInterface {
 		new HibernateUtil().transact( session -> { session.delete(getPerson(id)); return null; } );
 	}
 
-	public List<String> getRoles() {
-		return (List<String>) new HibernateUtil().transact(session -> session.createQuery("SELECT DISTINCT roleName FROM Role").list());
+	public List<Role> getRoles() {
+		return (List<Role>) new HibernateUtil().transact(session -> session.createQuery("FROM Role").list());
+	}
+
+	public void addRole(Role role) {
+		new HibernateUtil().transact(session -> { session.saveOrUpdate(role); return null; });
+	}
+
+	public List<Role> getAllRoles() {
+		return (List<Role>) new HibernateUtil().transact(session -> session.createQuery("FROM Role").list());
 	}
 }
