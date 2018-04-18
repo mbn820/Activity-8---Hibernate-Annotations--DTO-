@@ -1,5 +1,5 @@
 CREATE TABLE ROLE(
 	id INT NOT NULL,
-	role_name VARCHAR(10) NOT NULL,
+	role_name VARCHAR(50) NOT NULL,
 	PRIMARY KEY(id)
 );

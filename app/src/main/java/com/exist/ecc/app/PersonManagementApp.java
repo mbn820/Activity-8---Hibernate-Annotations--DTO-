@@ -7,115 +7,120 @@ import com.exist.ecc.app.forms.DeletePersonForm;
 import com.exist.ecc.app.forms.ViewPersonForm;
 import com.exist.ecc.app.forms.UpdatePersonForm;
 import com.exist.ecc.app.forms.AddRolesForm;
+import com.exist.ecc.app.forms.DeleteRolesForm;
 
 
 public class PersonManagementApp {
     public static void main(String[] args) {
-        menu();
+        startMenu();
     }
 
-    public static void menu() {
-        if(new PersonService().isEmpty()) {
-            showAddAndExitOnly();
-        } else {
-            showAllOptions();
-        }
-    }
-
-    public static void showAddAndExitOnly() {
-        System.out.println("\n\n");
-        System.out.println("[1] Add new Person");
-        System.out.println("[2] Add Roles");
+    public static void startMenu() {
+        System.out.println("\n\n~~~~~~~MAIN MENU~~~~~~~");
+        System.out.println("[1] Manage Persons");
+        System.out.println("[2] Manage Roles");
         System.out.println("[3] Exit");
 
         int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 3);
 
         switch(choice) {
-            case 1 : addNewPerson();
-                     break;
-            case 2 : addRoles();
-                     break;
-            case 3 : exit();
-                     break;
+            case 1 : managePersonsMenu(); break;
+            case 2 : manageRolesMenu();   break;
+            case 3 : exit();              break;
         }
     }
 
-    public static void showAllOptions() {
-        System.out.println("\n\n");
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static void managePersonsMenu() {
+        System.out.println("\n\n~~~~~~~MANAGE PERSONS~~~~~~~");
         System.out.println("[1] Add new Person");
         System.out.println("[2] View Person records");
         System.out.println("[3] Update Person details");
         System.out.println("[4] Delete Person records");
-        System.out.println("[5] Add Roles");
-        System.out.println("[6] View Roles");
-        System.out.println("[7] Exit");
+        System.out.println("[5] Back");
 
-        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 7);
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 5);
 
         switch(choice) {
-            case 1 : addNewPerson();
-                     break;
-            case 2 : viewPersonRecords();
-                     break;
-            case 3 : updatePersonDetails();
-                     break;
-            case 4 : deletePersonRecords();
-                     break;
-            case 5 : addRoles();
-                     break;
-            case 6 : viewRoles();
-                     break;
-            case 7 : exit();
-                     break;
-            default: menu();
-                     break;
+            case 1 : addNewPerson();        break;
+            case 2 : viewPersonRecords();   break;
+            case 3 : updatePersonDetails(); break;
+            case 4 : deletePersonRecords(); break;
+            case 5 : startMenu();           break;
         }
     }
 
     public static void addNewPerson() {
-        System.out.println("---ADD NEW PERSON---");
+        System.out.println("\n\n---ADD NEW PERSON---");
         AddPersonForm.show();
-        menu();
+        managePersonsMenu();
     }
 
     public static void viewPersonRecords() {
-        System.out.println("---VIEW PERSON RECORDS---");
+        System.out.println("\n\n---VIEW PERSON RECORDS---");
         ViewPersonForm.show();
-        menu();
+        managePersonsMenu();
     }
 
     public static void updatePersonDetails() {
-        System.out.println("---UPDATE PERSON DETAILS---");
+        System.out.println("\n\n---UPDATE PERSON DETAILS---");
         UpdatePersonForm.show();
-        menu();
+        managePersonsMenu();
     }
 
     public static void deletePersonRecords() {
-        System.out.println("---DELETE PERSON RECORDS---");
+        System.out.println("\n\n---DELETE PERSON RECORDS---");
         DeletePersonForm.show();
-        menu();
+        managePersonsMenu();
     }
 
-    public static void addRoles() {
-        System.out.println("---ADD ROLES---");
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static void manageRolesMenu() {
+        System.out.println("\n\n~~~~~~~MANAGE ROLES~~~~~~~");
+        System.out.println("[1] Add new Roles");
+        System.out.println("[2] View Roles");
+        System.out.println("[3] Delete Roles");
+        System.out.println("[4] Back");
+
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 4);
+
+        switch(choice) {
+            case 1 : addNewRoles(); break;
+            case 2 : viewRoles();   break;
+            case 3 : deleteRoles(); break;
+            case 4 : startMenu();   break;
+        }
+    }
+
+    public static void addNewRoles() {
+        System.out.println("\n\n---ADD ROLES---");
         AddRolesForm.show();
-        menu();
+        manageRolesMenu();
     }
 
     public static void viewRoles() {
-        System.out.println("---VIEW ROLES---");
+        System.out.println("\n\n---VIEW ROLES---");
         new RoleService().viewRoles();
-        menu();
+        manageRolesMenu();
     }
 
+    public static void deleteRoles() {
+        System.out.println("\n\n---DELETE ROLES---");
+        DeleteRolesForm.show();
+        manageRolesMenu();
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public static void exit() {
-        System.out.println("---EXIT---");
+        System.out.println("\n\n---EXIT---");
         String decision = ConsoleInputUtil.getDesiredString("Are you sure? [y/n]: ", "y", "n");
 
         switch(decision) {
-            case "y" : System.exit(0);
-            case "n" : menu(); break;
-            default : menu();
+            case "y" : System.exit(0); break;
+            case "n" : startMenu();    break;
         }
     }
 

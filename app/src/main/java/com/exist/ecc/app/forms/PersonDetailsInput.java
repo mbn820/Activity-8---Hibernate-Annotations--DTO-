@@ -76,19 +76,6 @@ public class PersonDetailsInput {
 		return new Role(roleName);
 	}
 
-	// public static Set<Role> getRolesInformation(Set<Role> roles) {
-	// 	roles.add(getSingleRoleInformation());
-	// 	String decision = ConsoleInputUtil.getDesiredString("\tAdd more role or proceed? [a/p]:", "a", "p");
-	//
-	// 	switch(decision) {
-	// 		case "a" : getRolesInformation(roles);
-	// 		           break;
-	// 		case "p" : break;
-	// 	}
-	//
-	// 	return roles;
-	// }
-
 	public static Set<Role> getRolesInformation(Set<Role> roles) {
         int roleId = ConsoleInputUtil.getAnyInteger("Enter role id: ");
 		Role chosenRole = new RoleService().getRole(roleId);

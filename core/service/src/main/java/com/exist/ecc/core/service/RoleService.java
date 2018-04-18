@@ -21,8 +21,12 @@ public class RoleService {
 		new RoleDao().updateRole(role);
 	}
 
-	public void deleteRole(int id) {
-		new RoleDao().deleteRole(id);
+	public void deleteRole(int id) throws Exception{
+		if( !getRole(id).getPersons().isEmpty() ) {
+			throw new Exception();
+		} else {
+			new RoleDao().deleteRole(id);
+		}
 	}
 
 	public void viewRoles() {

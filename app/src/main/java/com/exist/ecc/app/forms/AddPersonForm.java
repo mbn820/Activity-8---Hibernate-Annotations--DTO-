@@ -47,7 +47,7 @@ public class AddPersonForm {
 
     private static void save(Person person) {
         Integer id = new PersonService().addPerson(person);
-        person.getRoles().forEach(role -> new RoleService().updateRole(role));
+        // person.getRoles().forEach(role -> new RoleService().updateRole(role));
         System.out.println(person + " has been saved to the database with an id of: " + id);
         person.getRoles().forEach(role -> System.out.println(role.getRoleName() + " " + role.getPersons()));
     }

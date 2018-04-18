@@ -7,6 +7,7 @@ import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.RoleService;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
@@ -20,7 +21,7 @@ public class UpdatePersonForm {
 		int targetPersonId = ConsoleInputUtil.getAnyInteger("Enter person id: ");
 
 		Person targetPerson = new PersonService().getPerson(targetPersonId);
-		
+
 		if(targetPerson == null) {
 			System.out.println("Record does not exist");
 			return;
@@ -56,11 +57,8 @@ public class UpdatePersonForm {
 				targetPerson.setGwa(newGwa);
 				break;
 			case 7 :
-				System.out.println("Add Roles");
-				Set<Role> newRoles = PersonDetailsInput.getRolesInformation(targetPerson.getRoles());
-				targetPerson.getRoles().addAll(newRoles);
+				updateRoles(targetPerson);
 				break;
-
 			case 8 :
 				System.out.println("Add Contact Information");
 				Set<Contact> newContacts = PersonDetailsInput.getContactInformation(targetPerson.getContacts());
@@ -90,5 +88,21 @@ public class UpdatePersonForm {
 	public static void update(Person person) {
 		new PersonService().updatePerson(person);
 		System.out.println("Person has been updated");
+	}
+
+	public static void updateRoles(Person targetPerson) {
+		System.out.println("UPDATE ROLES");
+		System.out.println("[1] Remove Role");
+		System.out.println("[2] Add Roles");
+		int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 2);
+
+		switch(choice) {
+			case 1 : int roleId = ConsoleInputUtil.getAnyInteger("Enter role id: ");
+			         targetPerson.removeRole(new RoleService().getRole(roleId));
+					 break;
+			case 2 : Set<Role> newRoles = PersonDetailsInput.getRolesInformation(targetPerson.getRoles());
+			         newRoles.forEach(role -> targetPerson.addRole(role));
+					 break;
+		}
 	}
 }

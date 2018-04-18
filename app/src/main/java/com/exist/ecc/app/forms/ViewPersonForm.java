@@ -5,7 +5,7 @@ import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.util.PersonUtil;
+import com.exist.ecc.util.Util;
 import java.util.List;
 import java.util.Set;
 
@@ -30,15 +30,15 @@ public class ViewPersonForm {
 			System.out.println("Record does not exist");
 			return;
 		}
-		System.out.println(PersonUtil.HEADER);
-		PersonUtil.printInfo(targetPerson);
+		System.out.println(Util.PERSON_HEADER);
+		Util.printPersonInfo(targetPerson);
 
 		viewContactOrAddress(targetPerson);
 	}
 
 	public static void  viewAllPerson(){
 		List<Person> persons = new PersonService().getAllPerson("id");
-		PersonUtil.printInfo(persons);
+		Util.printPersonInfo(persons);
 
 		System.out.println("\nORDER BY: ");
 		System.out.println("[1] Last Name");
@@ -51,17 +51,17 @@ public class ViewPersonForm {
 			case 1 :
 				System.out.println("ORDER BY LAST NAME");
 				persons = new PersonService().getAllPerson("name.lastName");
-				PersonUtil.printInfo(persons);
+				Util.printPersonInfo(persons);
 				break;
 			case 2 :
 			    System.out.println("ORDER BY GWA");
 				persons = new PersonService().getAllPerson("gwa");
-				PersonUtil.printInfo(persons);
+				Util.printPersonInfo(persons);
 				break;
 			case 3 :
 			    System.out.println("ORDER BY DATE HIRED");
 				persons = new PersonService().getAllPerson("dateHired");
-				PersonUtil.printInfo(persons);
+				Util.printPersonInfo(persons);
 				break;
 			case 4 :
 				show();

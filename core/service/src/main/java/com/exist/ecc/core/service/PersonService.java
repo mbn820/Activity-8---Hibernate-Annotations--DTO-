@@ -31,23 +31,4 @@ public class PersonService {
 		return new PersonDao().getAllPerson("id").isEmpty();
 	}
 
-	public void addRole(Role role) {
-		List<Role> existingRoles = new PersonDao().getAllRoles();
-		existingRoles.forEach(existingRole -> {
-			if(role.equals(existingRole)) {
-				role.setId(existingRole.getId());
-				role.getPersons().addAll(existingRole.getPersons());
-				new PersonDao().addRole(role);
-				return;
-			}
-		});
-	}
-
-	////////////////////////////////////////////////////////
-
-	public void viewRoles() {
-		List<Role> roles = new PersonDao().getRoles();
-		System.out.println("Roles");
-		roles.forEach( role -> System.out.printf("%s\n", role.getRoleName()) );
-	}
 }

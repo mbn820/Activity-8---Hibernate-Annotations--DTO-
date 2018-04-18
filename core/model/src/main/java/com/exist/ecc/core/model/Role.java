@@ -38,6 +38,10 @@ public class Role {
 		person.getRoles().add(this);
 	}
 
+	public void removePerson(Person person) {
+		persons.remove(person);
+	}
+
 	public boolean equals(Object obj) {
 		if (obj == null) return false;
 		if (!this.getClass().equals(obj.getClass())) return false;

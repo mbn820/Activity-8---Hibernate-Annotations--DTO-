@@ -83,7 +83,12 @@ public class Person {
             roles = new HashSet<Role>();
         }
         roles.add(role);
-        role.getPersons().add(this);
+        role.addPerson(this);
+    }
+
+    public void removeRole(Role role) {
+        roles.remove(role);
+        role.removePerson(this);
     }
 
     public void addContact(Contact contact) {
