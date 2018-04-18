@@ -1,10 +1,31 @@
 package com.exist.ecc.core.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table (name = "ADDRESS")
 public class Address {
+
+    @Id
+    @Column (name = "address_id")
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private int addressId;
+
+    @Column (name = "street_number")
     private int streetNumber;
+
+    @Column (name = "barangay")
     private String barangay;
+
+    @Column (name = "municipality")
     private String municipality;
+
+    @Column (name = "zipcode")
     private String zipcode;
 
     public Address() {

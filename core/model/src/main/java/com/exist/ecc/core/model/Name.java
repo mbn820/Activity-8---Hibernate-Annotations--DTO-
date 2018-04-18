@@ -1,10 +1,24 @@
 package com.exist.ecc.core.model;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Column;
+
+@Embeddable
 public class Name {
+
+    @Column (name = "first_name")
     private String firstName;
+
+    @Column (name = "last_name")
     private String lastName;
+
+    @Column (name = "middle_name")
     private String middleName;
+
+    @Column (name = "suffix")
     private String suffix;
+
+    @Column (name = "title")
     private String title;
 
     public Name() {
