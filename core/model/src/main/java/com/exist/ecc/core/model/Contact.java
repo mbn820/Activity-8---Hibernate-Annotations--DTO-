@@ -22,10 +22,7 @@ public class Contact {
 	@Column (name = "detail")
 	private String detail;
 
-	public Contact() {
-
-	}
-
+	public Contact() {}
 	public Contact(String type, String detail) {
 		this.type = type;
 		this.detail = detail;

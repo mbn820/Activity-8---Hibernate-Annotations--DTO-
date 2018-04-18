@@ -18,8 +18,6 @@
                 <directory>persistence/</directory>
                 <includes>
                     <include>hibernate.cfg.xml</include>
-                    <include>Person.hbm.xml</include>
-                    <include>Role.hbm.xml</include>
                 </includes>
             </resource>
         </resources>

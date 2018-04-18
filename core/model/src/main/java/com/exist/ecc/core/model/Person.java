@@ -3,16 +3,60 @@ package com.exist.ecc.core.model;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Embedded;
+import javax.persistence.OneToOne;
+import javax.persistence.Column;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+@Table (name = "PERSON")
 public class Person {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private int id;
+
+    @Embedded
     private Name name;
+
+    @OneToOne
+    @JoinColumn (name = "address_id")
     private Address address;
+
+    @Column (name = "birth_date")
+    @Temporal (TemporalType.DATE)
     private Date birthDate;
+
+    @Column (name = "date_hired")
+    @Temporal (TemporalType.DATE)
     private Date dateHired;
+
+    @Column (name = "currently_employed")
     private boolean currentlyEmployed;
+
+    @Column (name = "gwa")
     private double gwa;
+
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable (name = "PERSON_ROLE",
+                joinColumns = { @JoinColumn (name = "person_id" )},
+                inverseJoinColumns = { @JoinColumn (name = "role_id")})
     private Set<Role> roles;
+
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn (name = "person_id")
     private Set<Contact> contacts;
 
     public Person() {}

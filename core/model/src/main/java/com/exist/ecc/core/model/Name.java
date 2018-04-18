@@ -21,10 +21,7 @@ public class Name {
     @Column (name = "title")
     private String title;
 
-    public Name() {
-
-    }
-
+    public Name() {}
     public Name(String firstName, String middleName, String lastName, String suffix, String title) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -3,10 +3,29 @@ package com.exist.ecc.core.model;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToMany;
+import javax.persistence.FetchType;
 
+@Entity
+@Table (name = "ROLE")
 public class Role {
+
+	@Id
+	@Column (name = "id")
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
+
+	@Column (name = "role_name")
 	private String roleName;
+
+	@ManyToMany (mappedBy = "roles",
+	             fetch = FetchType.EAGER)
 	private Set<Person> persons;
 
 	public Role() {}
