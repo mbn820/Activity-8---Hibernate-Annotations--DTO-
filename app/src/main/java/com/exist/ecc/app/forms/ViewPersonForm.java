@@ -13,12 +13,13 @@ public class ViewPersonForm {
 	public static void show() {
 		System.out.println("[1] Find Person");
 		System.out.println("[2] View All Person");
-
-		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 2);
+		System.out.println("[3] Back");
+		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 3);
 
 		switch(choice) {
 			case 1 : viewPerson(); break;
 			case 2 : viewAllPerson(); break;
+			case 3 : break;
 		}
 	}
 
@@ -43,7 +44,8 @@ public class ViewPersonForm {
 		System.out.println("[1] Last Name");
 		System.out.println("[2] GWA");
 		System.out.println("[3] Date Hired");
-		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 3);
+		System.out.println("[4] Cancel");
+		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 4);
 
 		switch(choice) {
 			case 1 :
@@ -61,6 +63,9 @@ public class ViewPersonForm {
 				persons = new PersonService().getAllPerson("dateHired");
 				PersonUtil.printInfo(persons);
 				break;
+			case 4 :
+				show();
+			    break;
 		}
 	}
 

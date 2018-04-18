@@ -9,6 +9,7 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Contact;
+import com.exist.ecc.core.service.RoleService;
 import org.apache.commons.lang3.time.DateUtils;
 
 public class PersonDetailsInput {
@@ -75,8 +76,24 @@ public class PersonDetailsInput {
 		return new Role(roleName);
 	}
 
+	// public static Set<Role> getRolesInformation(Set<Role> roles) {
+	// 	roles.add(getSingleRoleInformation());
+	// 	String decision = ConsoleInputUtil.getDesiredString("\tAdd more role or proceed? [a/p]:", "a", "p");
+	//
+	// 	switch(decision) {
+	// 		case "a" : getRolesInformation(roles);
+	// 		           break;
+	// 		case "p" : break;
+	// 	}
+	//
+	// 	return roles;
+	// }
+
 	public static Set<Role> getRolesInformation(Set<Role> roles) {
-		roles.add(getSingleRoleInformation());
+        int roleId = ConsoleInputUtil.getAnyInteger("Enter role id: ");
+		Role chosenRole = new RoleService().getRole(roleId);
+		roles.add(chosenRole);
+
 		String decision = ConsoleInputUtil.getDesiredString("\tAdd more role or proceed? [a/p]:", "a", "p");
 
 		switch(decision) {
@@ -86,7 +103,7 @@ public class PersonDetailsInput {
 		}
 
 		return roles;
-	}
+    }
 
 	public static Contact getSingleContact(String contactType, String pattern, String errorMsg) {
 		System.out.println("**CONTACT**");

@@ -7,14 +7,15 @@ import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.RoleService;
 import java.util.Date;
 import java.util.Set;
+import java.util.List;
 import java.util.HashSet;
 
 public class AddPersonForm {
 
     public static void show() {
-        Set<Role> roles = new HashSet<Role>();
         Set<Contact> contacts = new HashSet<Contact>();
 
         Name name = PersonDetailsInput.getNameInformation();
@@ -23,7 +24,7 @@ public class AddPersonForm {
         Date dateHired = PersonDetailsInput.getDateInformation("DATE HIRED");
         boolean currentlyEmployed = PersonDetailsInput.getEmploymentStatusInformation();
         double gwa = PersonDetailsInput.getGwaInformation();
-        roles = PersonDetailsInput.getRolesInformation(roles);
+        Set<Role> roles = chooseRoles();
         contacts = PersonDetailsInput.getContactInformation(contacts);
 
         ConsoleInputUtil.getAll("Press Enter to Continue.......");
@@ -34,10 +35,21 @@ public class AddPersonForm {
         save(person);
     }
 
+    public static Set<Role> chooseRoles() {
+        Set<Role> roles = new HashSet<Role>();
+        // display roles
+        List<Role> existingRoles = new RoleService().getAllRoles();
+        System.out.println("ID    ROLE");
+        existingRoles.forEach(role -> System.out.printf("[%s]   %s\n", role.getId(), role.getRoleName()));
+        // get roles by id
+        return PersonDetailsInput.getRolesInformation(roles);
+    }
+
     private static void save(Person person) {
         Integer id = new PersonService().addPerson(person);
-        person.getRoles().forEach(role -> new PersonService().addRole(role));
+        person.getRoles().forEach(role -> new RoleService().updateRole(role));
         System.out.println(person + " has been saved to the database with an id of: " + id);
+        person.getRoles().forEach(role -> System.out.println(role.getRoleName() + " " + role.getPersons()));
     }
 
 }

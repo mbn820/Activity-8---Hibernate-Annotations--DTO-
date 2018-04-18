@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Role {
 	private int id;
 	private String roleName;
-	private Set<Person> persons = new HashSet<Person>();
+	private Set<Person> persons;
 
 	public Role() {}
 	public Role(String roleName) {
@@ -26,11 +26,14 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	public void setPersons(Set<Person> person) {
+	public void setPersons(Set<Person> persons) {
 		this.persons = persons;
 	}
 
 	public void addPerson(Person person) {
+		if(persons == null) {
+			persons = new HashSet<Person>();
+		}
 		persons.add(person);
 		person.getRoles().add(this);
 	}

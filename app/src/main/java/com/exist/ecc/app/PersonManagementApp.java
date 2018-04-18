@@ -1,10 +1,12 @@
 package com.exist.ecc.app;
 
 import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.app.forms.AddPersonForm;
 import com.exist.ecc.app.forms.DeletePersonForm;
 import com.exist.ecc.app.forms.ViewPersonForm;
 import com.exist.ecc.app.forms.UpdatePersonForm;
+import com.exist.ecc.app.forms.AddRolesForm;
 
 
 public class PersonManagementApp {
@@ -23,14 +25,17 @@ public class PersonManagementApp {
     public static void showAddAndExitOnly() {
         System.out.println("\n\n");
         System.out.println("[1] Add new Person");
-        System.out.println("[2] Exit");
+        System.out.println("[2] Add Roles");
+        System.out.println("[3] Exit");
 
-        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 2);
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 3);
 
         switch(choice) {
             case 1 : addNewPerson();
                      break;
-            case 2 : exit();
+            case 2 : addRoles();
+                     break;
+            case 3 : exit();
                      break;
         }
     }
@@ -41,10 +46,11 @@ public class PersonManagementApp {
         System.out.println("[2] View Person records");
         System.out.println("[3] Update Person details");
         System.out.println("[4] Delete Person records");
-        System.out.println("[5] View Roles");
-        System.out.println("[6] Exit");
+        System.out.println("[5] Add Roles");
+        System.out.println("[6] View Roles");
+        System.out.println("[7] Exit");
 
-        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 6);
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 7);
 
         switch(choice) {
             case 1 : addNewPerson();
@@ -55,9 +61,11 @@ public class PersonManagementApp {
                      break;
             case 4 : deletePersonRecords();
                      break;
-            case 5 : viewRoles();
+            case 5 : addRoles();
                      break;
-            case 6 : exit();
+            case 6 : viewRoles();
+                     break;
+            case 7 : exit();
                      break;
             default: menu();
                      break;
@@ -88,9 +96,15 @@ public class PersonManagementApp {
         menu();
     }
 
+    public static void addRoles() {
+        System.out.println("---ADD ROLES---");
+        AddRolesForm.show();
+        menu();
+    }
+
     public static void viewRoles() {
         System.out.println("---VIEW ROLES---");
-        new PersonService().viewRoles();
+        new RoleService().viewRoles();
         menu();
     }
 
