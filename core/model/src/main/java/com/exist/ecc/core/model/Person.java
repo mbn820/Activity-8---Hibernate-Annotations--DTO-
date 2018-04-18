@@ -31,8 +31,7 @@ public class Person {
     @Embedded
     private Name name;
 
-    @OneToOne
-    @JoinColumn (name = "address_id")
+    @Embedded
     private Address address;
 
     @Column (name = "birth_date")
@@ -55,7 +54,8 @@ public class Person {
                 inverseJoinColumns = { @JoinColumn (name = "role_id")})
     private Set<Role> roles;
 
-    @OneToMany (cascade = CascadeType.ALL)
+    @OneToMany (fetch = FetchType.EAGER,
+                cascade = CascadeType.ALL)
     @JoinColumn (name = "person_id")
     private Set<Contact> contacts;
 

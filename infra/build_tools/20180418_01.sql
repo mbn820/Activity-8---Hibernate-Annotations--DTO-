@@ -1,0 +1,5 @@
+ALTER TABLE PERSON
+ADD COLUMN street_number INT,
+ADD COLUMN barangay VARCHAR(50),
+ADD COLUMN municipality VARCHAR(50),
+ADD COLUMN zipcode VARCHAR(4);

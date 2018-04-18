@@ -1,20 +1,12 @@
 package com.exist.ecc.core.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-@Entity
-@Table (name = "ADDRESS")
+@Embeddable
 public class Address {
-
-    @Id
-    @Column (name = "address_id")
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private int addressId;
 
     @Column (name = "street_number")
     private int streetNumber;
@@ -40,17 +32,12 @@ public class Address {
     }
 
     // getters
-    public int getAddressId() { return addressId; }
     public int getStreetNumber() { return streetNumber; }
     public String getBarangay() { return barangay; }
     public String getMunicipality() { return municipality; }
     public String getZipcode() { return zipcode; }
 
     // setters
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
     public void setStreetNumber(int streetNumber) {
         this.streetNumber = streetNumber;
     }
