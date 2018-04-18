@@ -12,11 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
 import javax.persistence.Cacheable;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
+// @Cacheable
+// @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "role")
 @Entity
 @Table (name = "ROLE")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Role {
 
 	@Id

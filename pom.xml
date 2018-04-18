@@ -20,8 +20,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
         <mainClass>com.exist.ecc.app.PersonManagementApp</mainClass>
         <hibernateVersion>4.3.11.Final</hibernateVersion>
         <postgresVersion>42.2.2</postgresVersion>
@@ -58,6 +58,12 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-ehcache</artifactId>
                 <version>5.2.2.Final</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>2.10.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

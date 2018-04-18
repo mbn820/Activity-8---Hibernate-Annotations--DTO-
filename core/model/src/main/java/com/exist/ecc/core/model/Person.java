@@ -50,14 +50,10 @@ public class Person {
     private double gwa;
 
     @ManyToMany (fetch = FetchType.EAGER)
-    @JoinTable (name = "PERSON_ROLE",
-                joinColumns = { @JoinColumn (name = "person_id" )},
-                inverseJoinColumns = { @JoinColumn (name = "role_id")})
+    @JoinTable (name = "PERSON_ROLE", joinColumns = { @JoinColumn (name = "person_id" ) }, inverseJoinColumns = { @JoinColumn (name = "role_id") })
     private Set<Role> roles;
 
-    @OneToMany (fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL,
-                orphanRemoval = true)
+    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn (name = "person_id")
     private Set<Contact> contacts;
 

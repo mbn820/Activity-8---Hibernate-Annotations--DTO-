@@ -39,6 +39,9 @@ public class AddPersonForm {
         Set<Role> roles = new HashSet<Role>();
         // display roles
         List<Role> existingRoles = new RoleService().getAllRoles();
+        if(existingRoles.isEmpty()) {
+            return roles;
+        }
         System.out.println("ID    ROLE");
         existingRoles.forEach(role -> System.out.printf("[%s]   %s\n", role.getId(), role.getRoleName()));
         // get roles by id

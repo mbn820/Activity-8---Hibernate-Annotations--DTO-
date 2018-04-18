@@ -18,6 +18,7 @@
                 <directory>persistence/</directory>
                 <includes>
                     <include>hibernate.cfg.xml</include>
+                    <include>ehcache.xml</include>
                 </includes>
             </resource>
         </resources>
