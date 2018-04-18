@@ -20,6 +20,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 @Entity
 @Table (name = "PERSON")
 public class Person {
@@ -55,7 +56,8 @@ public class Person {
     private Set<Role> roles;
 
     @OneToMany (fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
+                cascade = CascadeType.ALL,
+                orphanRemoval = true)
     @JoinColumn (name = "person_id")
     private Set<Contact> contacts;
 

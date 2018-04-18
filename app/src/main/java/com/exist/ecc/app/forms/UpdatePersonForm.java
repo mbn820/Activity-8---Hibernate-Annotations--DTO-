@@ -60,9 +60,7 @@ public class UpdatePersonForm {
 				updateRoles(targetPerson);
 				break;
 			case 8 :
-				System.out.println("Add Contact Information");
-				Set<Contact> newContacts = PersonDetailsInput.getContactInformation(targetPerson.getContacts());
-				targetPerson.getContacts().addAll(newContacts);
+				updateContacts(targetPerson);
 				break;
 		}
 
@@ -102,6 +100,27 @@ public class UpdatePersonForm {
 					 break;
 			case 2 : Set<Role> newRoles = PersonDetailsInput.getRolesInformation(targetPerson.getRoles());
 			         newRoles.forEach(role -> targetPerson.addRole(role));
+					 break;
+		}
+	}
+
+	public static void updateContacts(Person targetPerson) {
+		Set<Contact> targetPersonContacts = targetPerson.getContacts();
+
+		System.out.println("Current list of Contacts: ");
+		targetPersonContacts.forEach(contact -> System.out.printf("[%s]  %s\n", contact.getId(), contact));
+		System.out.println("UPDATE CONTACTS");
+		System.out.println("[1] Add Contact");
+		System.out.println("[2] Remove Contact");
+		int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 2);
+
+		switch(choice) {
+			case 1 : System.out.println("Add Contact Information");
+					 Set<Contact> newContacts = PersonDetailsInput.getContactInformation(targetPerson.getContacts());
+					 targetPersonContacts.addAll(newContacts);
+					 break;
+			case 2 : int chosenId = ConsoleInputUtil.getAnyInteger("Enter the id of contact to remove: ");
+					 targetPersonContacts.removeIf(contact -> contact.getId() == chosenId);
 					 break;
 		}
 	}
