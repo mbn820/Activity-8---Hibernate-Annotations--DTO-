@@ -19,7 +19,7 @@
 		<mapping resource = "Person.hbm.xml"/>
 		<mapping class = "com.exist.ecc.core.model.Address"/>
 		<mapping resource = "Role.hbm.xml"/>
-		<mapping resource = "Contact.hbm.xml"/>
+		<mapping class = "com.exist.ecc.core.model.Contact"/>
 
 	</session-factory>
 </hibernate-configuration>

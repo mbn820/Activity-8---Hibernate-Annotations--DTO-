@@ -20,7 +20,6 @@
                     <include>hibernate.cfg.xml</include>
                     <include>Person.hbm.xml</include>
                     <include>Role.hbm.xml</include>
-                    <include>Contact.hbm.xml</include>
                 </includes>
             </resource>
         </resources>

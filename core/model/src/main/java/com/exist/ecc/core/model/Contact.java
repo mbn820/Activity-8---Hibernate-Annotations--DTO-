@@ -1,8 +1,25 @@
 package com.exist.ecc.core.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table (name = "CONTACT")
 public class Contact {
+
+	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
+	@Column (name = "id")
 	private int id;
+
+	@Column (name = "type")
 	private String type;
+
+	@Column (name = "detail")
 	private String detail;
 
 	public Contact() {
