@@ -2,6 +2,7 @@ package com.exist.ecc.core.dao;
 
 import com.exist.ecc.core.model.Role;
 import java.util.List;
+import org.hibernate.Query;
 
 public class RoleDao {
 
@@ -14,7 +15,11 @@ public class RoleDao {
 	}
 
 	public List<Role> getAllRoles() {
-		return (List<Role>) new HibernateUtil().transact(session -> session.createQuery("FROM Role").list());
+		return (List<Role>) new HibernateUtil().transact(session -> {
+			Query query = session.createQuery("FROM Role");
+			query.setCacheable(true);
+			return query.list();
+		 });
 	}
 
 	public void updateRole(Role role) {

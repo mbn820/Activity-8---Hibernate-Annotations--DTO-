@@ -15,8 +15,8 @@ import javax.persistence.Cacheable;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cache;
 
-// @Cacheable
-// @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "role")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table (name = "ROLE")
 public class Role {
@@ -30,7 +30,7 @@ public class Role {
 	private String roleName;
 
 	@ManyToMany (mappedBy = "roles",
-	             fetch = FetchType.EAGER)
+	             fetch = FetchType.LAZY)
 	private Set<Person> persons;
 
 	public Role() {}
