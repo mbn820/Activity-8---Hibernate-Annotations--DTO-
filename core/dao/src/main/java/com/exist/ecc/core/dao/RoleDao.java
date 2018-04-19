@@ -4,7 +4,7 @@ import com.exist.ecc.core.model.Role;
 import java.util.List;
 import org.hibernate.Query;
 
-public class RoleDao {
+public class RoleDao implements RoleDaoInterface {
 
 	public Integer addRole(Role role) {
 		return (Integer) new HibernateUtil().transact(session -> session.save(role));
@@ -21,6 +21,7 @@ public class RoleDao {
 			return query.list();
 		 });
 	}
+
 
 	public void updateRole(Role role) {
 		new HibernateUtil().transact( session -> { session.update(role); return null; } );

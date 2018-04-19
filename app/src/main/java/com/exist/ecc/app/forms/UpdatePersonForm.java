@@ -86,7 +86,7 @@ public class UpdatePersonForm {
 		System.out.println("[6] GWA");
 		System.out.println("[7] Roles");
 		System.out.println("[8] Contacts");
-		System.out.println("[9] Cancel")
+		System.out.println("[9] Cancel");
 	}
 
 	public static void update(Person person) {
