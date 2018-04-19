@@ -31,11 +31,25 @@ public class Name {
     }
 
     // getters
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public String getMiddleName() { return middleName; }
-    public String getSuffix() { return suffix; }
-    public String getTitle() { return title; }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 
     //setters
     public void setFirstName(String firstName) {

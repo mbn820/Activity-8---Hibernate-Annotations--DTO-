@@ -3,17 +3,9 @@ package com.exist.ecc.core.model;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToMany;
-import javax.persistence.FetchType;
-import javax.persistence.Cacheable;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import javax.persistence.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -22,15 +14,13 @@ import org.hibernate.annotations.Cache;
 public class Role {
 
 	@Id
-	@Column (name = "id")
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column (name = "role_name")
 	private String roleName;
 
-	@ManyToMany (mappedBy = "roles",
-	             fetch = FetchType.LAZY)
+	@ManyToMany (mappedBy = "roles", fetch = FetchType.EAGER)
 	private Set<Person> persons;
 
 	public Role() {}
@@ -38,9 +28,17 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	public int getId() { return id; }
-	public String getRoleName() { return roleName; }
-	public Set<Person> getPersons() { return persons; }
+	public int getId() {
+		return id;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public Set<Person> getPersons() {
+		return persons;
+	}
 
 	public void setId(int id) {
 		this.id = id;

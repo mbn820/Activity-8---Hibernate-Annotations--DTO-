@@ -16,7 +16,6 @@
         memoryStoreEvictionPolicy="LRU"
         statistics="true"
         diskPersistent="true">
-        <!-- <persistence strategy="localTempSwap" /> -->
     </defaultCache>
 
     <cache
@@ -27,8 +26,17 @@
         timeToLiveSeconds="600"
         diskPersistent="true"
         overflowToDisk="true">
-        <!-- <persistence strategy="localTempSwap" /> -->
     </cache>
+
+    <!-- <cache
+        name="com.exist.ecc.core.model.Person"
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        diskPersistent="true"
+        overflowToDisk="true">
+    </cache> -->
 
     <cache
         name="org.hibernate.cache.internal.StandardQueryCache"
@@ -36,13 +44,11 @@
         eternal="false"
         timeToLiveSeconds="120"
         diskPersistent="true">
-        <!-- <persistence strategy="localTempSwap" /> -->
     </cache>
 
     <cache
         name="org.hibernate.cache.spi.UpdateTimestampsCache"
         maxElementsInMemory="5000" eternal="true"
         diskPersistent="true">
-        <!-- <persistence strategy="localTempSwap" /> -->
     </cache>
 </ehcache>

@@ -1,11 +1,6 @@
 package com.exist.ecc.core.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Entity
 @Table (name = "CONTACT")
@@ -28,9 +23,17 @@ public class Contact {
 		this.detail = detail;
 	}
 
-	public int getId() { return id; }
-	public String getType() { return type; }
-	public String getDetail() { return detail; }
+	public int getId() {
+    	return id;
+    }
+
+	public String getType() {
+		return type;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
 
  	public void setId(int id) {
 		this.id = id;

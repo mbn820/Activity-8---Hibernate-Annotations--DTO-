@@ -2,12 +2,7 @@ package com.exist.ecc.app;
 
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
-import com.exist.ecc.app.forms.AddPersonForm;
-import com.exist.ecc.app.forms.DeletePersonForm;
-import com.exist.ecc.app.forms.ViewPersonForm;
-import com.exist.ecc.app.forms.UpdatePersonForm;
-import com.exist.ecc.app.forms.AddRolesForm;
-import com.exist.ecc.app.forms.DeleteRolesForm;
+import com.exist.ecc.app.forms.*;
 
 
 public class PersonManagementApp {

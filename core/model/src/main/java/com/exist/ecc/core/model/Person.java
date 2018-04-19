@@ -3,22 +3,7 @@ package com.exist.ecc.core.model;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Embedded;
-import javax.persistence.OneToOne;
-import javax.persistence.Column;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 
 @Entity
@@ -72,16 +57,41 @@ public class Person {
     }
 
     // getters
-    public int getId() { return id; }
-    public Name getName() { return name; }
-    public Address getAddress() { return address; }
-    public Date getBirthDate() { return birthDate; }
-    public Date getDateHired() { return dateHired; }
-    public boolean getCurrentlyEmployed() { return currentlyEmployed; }
-    public double getGwa() { return gwa; }
-    public Set<Role> getRoles() { return roles; }
-    public Set<Contact> getContacts() { return contacts; }
+    public int getId() {
+        return id;
+    }
 
+    public Name getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public Date getDateHired() {
+        return dateHired;
+    }
+
+    public boolean getCurrentlyEmployed() {
+        return currentlyEmployed;
+    }
+
+    public double getGwa() {
+        return gwa;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
 
     // setters
     public void setId(int id) {
