@@ -38,16 +38,18 @@ public class PersonManagementApp {
         System.out.println("[2] View Person records");
         System.out.println("[3] Update Person details");
         System.out.println("[4] Delete Person records");
-        System.out.println("[5] Back");
+        System.out.println("[5] MANAGE ROLES");
+        System.out.println("[6] Back");
 
-        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 5);
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 6);
 
         switch(choice) {
             case 1 : addNewPerson();        break;
             case 2 : viewPersonRecords();   break;
             case 3 : updatePersonDetails(); break;
             case 4 : deletePersonRecords(); break;
-            case 5 : startMenu();           break;
+            case 5 : manageRolesMenu();     break;
+            case 6 : startMenu();           break;
         }
     }
 
@@ -82,15 +84,17 @@ public class PersonManagementApp {
         System.out.println("[1] Add new Roles");
         System.out.println("[2] View Roles");
         System.out.println("[3] Delete Roles");
-        System.out.println("[4] Back");
+        System.out.println("[4] MANAGE PERSONS");
+        System.out.println("[5] Back");
 
-        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 4);
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 5);
 
         switch(choice) {
-            case 1 : addNewRoles(); break;
-            case 2 : viewRoles();   break;
-            case 3 : deleteRoles(); break;
-            case 4 : startMenu();   break;
+            case 1 : addNewRoles();       break;
+            case 2 : viewRoles();         break;
+            case 3 : deleteRoles();       break;
+            case 4 : managePersonsMenu(); break;
+            case 5 : startMenu();         break;
         }
     }
 

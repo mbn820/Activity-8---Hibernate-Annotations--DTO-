@@ -2,6 +2,7 @@ package com.exist.ecc.app;
 
 import java.util.Scanner;
 import java.util.Set;
+import java.util.List;
 import java.util.Arrays;
 
 public class ConsoleInputUtil {
@@ -129,6 +130,20 @@ public class ConsoleInputUtil {
 		String errorMessage = "Invalid input";
 		return getDoubleBetween(message, desiredMin, desiredMax, errorMessage);
 	}
+
+	public static int getDesiredIntegers(String message, List<Integer> integers) {
+		int input;
+
+		do {
+			input = getAnyInteger(message);
+			if(!integers.contains(input)) {
+				System.out.println("Invalid Input please enter one of the following: " + integers);
+			}
+		} while(!integers.contains(input));
+
+		return input;
+	}
+
 
 	private static boolean isInteger(String str) {
 		try {

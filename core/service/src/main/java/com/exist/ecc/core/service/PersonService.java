@@ -6,6 +6,7 @@ import com.exist.ecc.core.dao.PersonDao;
 import java.util.List;
 import java.util.Set;
 
+
 public class PersonService {
 	public Integer addPerson(Person person) {
 		return new PersonDao().addPerson(person);
@@ -17,6 +18,10 @@ public class PersonService {
 
 	public List<Person> getAllPerson(String orderBy) {
 		return new PersonDao().getAllPerson(orderBy);
+	}
+
+	public List<Person> getPersonsByLastName(String lastName) {
+		return new PersonDao().getPersonsByLastName(lastName);
 	}
 
 	public void deletePerson(int id) {

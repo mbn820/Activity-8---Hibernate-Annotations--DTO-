@@ -11,8 +11,19 @@ public class AddRolesForm {
 
 		ConsoleInputUtil.getAll("Press Enter to continue.......");
 
-		new RoleService().addRole(role);
+		if(new RoleService().roleAlreadyExists(role)) {
+			System.out.println("Role already exists");
+			addMoreRoleOrProceed();
+		}
 
+		new RoleService().addRole(role);
+		System.out.println("Role Added");
+
+		addMoreRoleOrProceed();
+
+	}
+
+	public static void addMoreRoleOrProceed() {
 		String choice = ConsoleInputUtil.getDesiredString("Add more role or proceed? [a/p]: ", "a", "p");
 
 		switch(choice) {

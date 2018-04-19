@@ -3,6 +3,8 @@ package com.exist.ecc.core.dao;
 import java.util.List;
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 public class PersonDao implements PersonDaoInterface {
 
@@ -16,6 +18,25 @@ public class PersonDao implements PersonDaoInterface {
 
 	public List<Person> getAllPerson(String orderBy) {
 		return (List<Person>) new HibernateUtil().transact(session -> session.createQuery("FROM Person p ORDER BY p." + orderBy).list());
+	}
+
+	// public List<Person> getPersonsByLastName(String lastName) {
+	// 	List<Person> persons = (List<Person>) new HibernateUtil().transact(session -> {
+	// 		Criteria criteria = session.createCriteria(Person.class);
+	// 		criteria.add( Restrictions.ilike("name.lastName", lastName + "%") );
+	// 		return criteria.list();
+	// 	});
+	// 	return persons;
+	// }
+
+	public List<Person> getPersonsByLastName(String lastName) {
+		Operation fetchByLastName = session -> {
+			Criteria criteria = session.createCriteria(Person.class);
+			criteria.add( Restrictions.ilike("name.lastName", lastName + "%") );
+			System.out.println( "^^^^^^^^^^^^^^^^^^^^^" + criteria.list().size() );
+			return criteria.list();
+		};
+		return (List<Person>) new HibernateUtil().transact(fetchByLastName);
 	}
 
 	public void updatePerson(Person person) {

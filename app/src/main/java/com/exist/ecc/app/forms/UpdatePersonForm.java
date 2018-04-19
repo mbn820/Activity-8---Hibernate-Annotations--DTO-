@@ -8,15 +8,18 @@ import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.util.Util;
 import java.util.Date;
 import java.util.Set;
+import java.util.List;
 import java.util.HashSet;
 
 
 
 public class UpdatePersonForm {
 	public static void show() {
-		Set<Role> roles = new HashSet<Role>();
+		List<Person> allPersons = new PersonService().getAllPerson("id");
+		Util.printPersonInfo(allPersons);
 
 		int targetPersonId = ConsoleInputUtil.getAnyInteger("Enter person id: ");
 
