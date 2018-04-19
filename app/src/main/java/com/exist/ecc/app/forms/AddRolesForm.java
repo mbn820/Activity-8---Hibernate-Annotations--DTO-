@@ -14,6 +14,7 @@ public class AddRolesForm {
 		if(new RoleService().roleAlreadyExists(role)) {
 			System.out.println("Role already exists");
 			addMoreRoleOrProceed();
+			return;
 		}
 
 		new RoleService().addRole(role);

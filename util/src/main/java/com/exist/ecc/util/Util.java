@@ -20,6 +20,11 @@ public class Util {
 		persons.forEach(person -> printPersonInfo(person));
 	}
 
+	public static void printBasicPersonInfo(List<Person> persons) {
+		System.out.println("ID       NAME");
+		persons.forEach(person -> System.out.printf("%-9s%s\n", person.getId(), person.getName()));
+	}
+
 	public static void printRoleInfo(Role role) {
 		System.out.printf(ROLE_FORMAT, role.getId(), role.getRoleName(), role.getPersons());
 	}

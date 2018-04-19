@@ -14,7 +14,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Role {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "role_id_generator")
+	@SequenceGenerator (name = "role_id_generator", sequenceName = "role_seq", allocationSize = 50)
 	private int id;
 
 	@Column (name = "role_name")

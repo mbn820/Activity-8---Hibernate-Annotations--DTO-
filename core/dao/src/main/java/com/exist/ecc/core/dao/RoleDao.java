@@ -30,4 +30,9 @@ public class RoleDao {
 		new HibernateUtil().transact( session -> { session.delete(getRole(id)); return null; } );
 	}
 
+	public void deleteAllRoles() {
+		List<Role> allRoles = getAllRoles();
+		allRoles.forEach(role -> deleteRole(role.getId()));
+	}
+
 }

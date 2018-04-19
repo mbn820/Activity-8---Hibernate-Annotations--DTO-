@@ -9,6 +9,8 @@ import com.exist.ecc.util.Util;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.Comparator;
 
 public class ViewPersonForm {
 	public static void show() {
@@ -27,11 +29,18 @@ public class ViewPersonForm {
 	public static void findPerson() {
 		String lastName = ConsoleInputUtil.getAnyString("Enter last name: ");
 		List<Person> persons = new PersonService().getPersonsByLastName(lastName);
+
 		if(persons.isEmpty()) {
-			System.out.println("No record found with last name " + lastName);
+			System.out.println("No record found with last name : " + lastName);
 			return;
 		}
-		Util.printPersonInfo(persons); // -> print basic info
+
+		if(persons.size() == 1) {
+			displayInfo(persons.get(0));
+			return;
+		}
+
+		Util.printBasicPersonInfo(persons);
 
 		// int targetPersonId = ConsoleInputUtil.getAnyInteger("Choose id: ");
 		List<Integer> desiredInputs = new ArrayList<Integer>();
@@ -46,9 +55,13 @@ public class ViewPersonForm {
 			}
 		}
 
-		Util.printPersonInfo(targetPerson);
+		displayInfo(targetPerson);
+	}
 
-		viewContactOrAddress(targetPerson);
+	public static void displayInfo(Person person) {
+		System.out.println(Util.PERSON_HEADER);
+		Util.printPersonInfo(person);
+		viewContactOrAddress(person);
 	}
 
 	public static void  viewAllPerson(){
@@ -64,18 +77,18 @@ public class ViewPersonForm {
 
 		switch(choice) {
 			case 1 :
-				System.out.println("ORDER BY LAST NAME");
-				persons = new PersonService().getAllPerson("name.lastName");
+				System.out.println("\nORDER BY LAST NAME");
+				persons = new PersonService().getPersonsByLastName(""); // criteria
 				Util.printPersonInfo(persons);
 				break;
 			case 2 :
-			    System.out.println("ORDER BY GWA");
-				persons = new PersonService().getAllPerson("gwa");
+			    System.out.println("\nORDER BY GWA");
+				persons.sort(Comparator.comparing(Person :: getGwa)); // java sort
 				Util.printPersonInfo(persons);
 				break;
 			case 3 :
-			    System.out.println("ORDER BY DATE HIRED");
-				persons = new PersonService().getAllPerson("dateHired");
+			    System.out.println("\nORDER BY DATE HIRED");
+				persons = new PersonService().getAllPerson("dateHired"); // hql
 				Util.printPersonInfo(persons);
 				break;
 			case 4 :

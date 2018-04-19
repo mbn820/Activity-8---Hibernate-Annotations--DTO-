@@ -5,6 +5,7 @@ import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Order;
 
 public class PersonDao implements PersonDaoInterface {
 
@@ -20,23 +21,14 @@ public class PersonDao implements PersonDaoInterface {
 		return (List<Person>) new HibernateUtil().transact(session -> session.createQuery("FROM Person p ORDER BY p." + orderBy).list());
 	}
 
-	// public List<Person> getPersonsByLastName(String lastName) {
-	// 	List<Person> persons = (List<Person>) new HibernateUtil().transact(session -> {
-	// 		Criteria criteria = session.createCriteria(Person.class);
-	// 		criteria.add( Restrictions.ilike("name.lastName", lastName + "%") );
-	// 		return criteria.list();
-	// 	});
-	// 	return persons;
-	// }
-
 	public List<Person> getPersonsByLastName(String lastName) {
-		Operation fetchByLastName = session -> {
-			Criteria criteria = session.createCriteria(Person.class);
-			criteria.add( Restrictions.ilike("name.lastName", lastName + "%") );
-			System.out.println( "^^^^^^^^^^^^^^^^^^^^^" + criteria.list().size() );
-			return criteria.list();
-		};
-		return (List<Person>) new HibernateUtil().transact(fetchByLastName);
+		return (List<Person>) new HibernateUtil().transact(session ->
+			session.createCriteria(Person.class)
+			       .add( Restrictions.like("name.lastName", lastName + "%") )
+				   .addOrder( Order.asc("name.lastName") )
+				   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				   .list()
+	    );
 	}
 
 	public void updatePerson(Person person) {
@@ -57,5 +49,10 @@ public class PersonDao implements PersonDaoInterface {
 
 	public List<Role> getAllRoles() {
 		return (List<Role>) new HibernateUtil().transact(session -> session.createQuery("FROM Role").list());
+	}
+
+	public void deleteAllRecords() {
+		List<Person> allPersons = getAllPerson("id");
+		allPersons.forEach(person -> deletePerson(person.getId()));
 	}
 }

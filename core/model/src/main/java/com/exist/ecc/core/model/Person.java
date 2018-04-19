@@ -11,7 +11,8 @@ import javax.persistence.*;
 public class Person {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "person_id_generator")
+    @SequenceGenerator (name = "person_id_generator", sequenceName = "person_seq", allocationSize = 50)
     private int id;
 
     @Embedded
@@ -20,12 +21,12 @@ public class Person {
     @Embedded
     private Address address;
 
-    @Column (name = "birth_date")
     @Temporal (TemporalType.DATE)
+    @Column (name = "birth_date")
     private Date birthDate;
 
-    @Column (name = "date_hired")
     @Temporal (TemporalType.DATE)
+    @Column (name = "date_hired")
     private Date dateHired;
 
     @Column (name = "currently_employed")

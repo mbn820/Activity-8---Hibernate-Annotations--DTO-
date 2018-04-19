@@ -19,7 +19,7 @@ import java.util.HashSet;
 public class UpdatePersonForm {
 	public static void show() {
 		List<Person> allPersons = new PersonService().getAllPerson("id");
-		Util.printPersonInfo(allPersons);
+		Util.printBasicPersonInfo(allPersons);
 
 		int targetPersonId = ConsoleInputUtil.getAnyInteger("Enter person id: ");
 
@@ -32,7 +32,7 @@ public class UpdatePersonForm {
 
 		displayOptions();
 
-		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 8);
+		int choice = ConsoleInputUtil.getIntegerBetween("Enter choice: ", 1, 9);
 
 		switch(choice) {
 			case 1 :
@@ -65,6 +65,8 @@ public class UpdatePersonForm {
 			case 8 :
 				updateContacts(targetPerson);
 				break;
+			case 9 :
+			    break;
 		}
 
 		ConsoleInputUtil.getAll("Press Enter to Continue.......");
@@ -84,6 +86,7 @@ public class UpdatePersonForm {
 		System.out.println("[6] GWA");
 		System.out.println("[7] Roles");
 		System.out.println("[8] Contacts");
+		System.out.println("[9] Cancel")
 	}
 
 	public static void update(Person person) {
