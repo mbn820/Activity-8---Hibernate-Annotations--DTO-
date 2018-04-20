@@ -5,6 +5,8 @@ import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.PersonDtoService;
+import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.util.Util;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class ViewPersonForm {
 
 	public static void findPerson() {
 		String lastName = ConsoleInputUtil.getAnyString("Enter last name: ");
-		List<Person> persons = new PersonService().getPersonsByLastName(lastName);
+		List<PersonDto> persons = new PersonDtoService().getPersonDtosByLastName(lastName);
 
 		if(persons.isEmpty()) {
 			System.out.println("No record found with last name : " + lastName);
@@ -40,15 +42,14 @@ public class ViewPersonForm {
 			return;
 		}
 
-		Util.printBasicPersonInfo(persons);
+		Util.printBasicPersonDtoInfo(persons);
 
-		// int targetPersonId = ConsoleInputUtil.getAnyInteger("Choose id: ");
 		List<Integer> desiredInputs = new ArrayList<Integer>();
 		persons.forEach(person -> desiredInputs.add(person.getId()));
 		int targetPersonId = ConsoleInputUtil.getDesiredIntegers("Choose id: ", desiredInputs);
-		Person targetPerson = null;
+		PersonDto targetPerson = null;
 
-		for(Person person : persons) {
+		for(PersonDto person : persons) {
 			if(person.getId() == targetPersonId) {
 				targetPerson = person;
 				break;
@@ -58,9 +59,9 @@ public class ViewPersonForm {
 		displayInfo(targetPerson);
 	}
 
-	public static void displayInfo(Person person) {
+	public static void displayInfo(PersonDto person) {
 		System.out.println(Util.PERSON_HEADER);
-		Util.printPersonInfo(person);
+		Util.printPersonDtoInfo(person);
 		viewContactOrAddress(person);
 	}
 
@@ -97,7 +98,7 @@ public class ViewPersonForm {
 		}
 	}
 
-	public static void viewContactOrAddress(Person person) {
+	public static void viewContactOrAddress(PersonDto person) {
 		System.out.println("[1] View Contacts");
 		System.out.println("[2] View Address");
 		System.out.println("[3] Exit");
@@ -111,14 +112,14 @@ public class ViewPersonForm {
 		}
 	}
 
-	public static void viewContacts(Person person) {
+	public static void viewContacts(PersonDto person) {
 		Set<Contact> contacts = person.getContacts();
 		System.out.printf("%s's Contacts: \n", person.getName().getFirstName());
 		contacts.forEach(c -> System.out.println("\t" + c));
 		viewContactOrAddress(person);
 	}
 
-	public static void viewAddress(Person person) {
+	public static void viewAddress(PersonDto person) {
 		Address address = person.getAddress();
 		System.out.printf("%s's Address: \n", person.getName().getFirstName());
 		System.out.println("\t" + address);
