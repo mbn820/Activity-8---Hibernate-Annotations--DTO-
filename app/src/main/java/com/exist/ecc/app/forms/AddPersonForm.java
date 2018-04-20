@@ -6,8 +6,10 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Contact;
-import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.PersonDtoService;
+import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.core.service.MapperUtil;
 import java.util.Date;
 import java.util.Set;
 import java.util.List;
@@ -29,10 +31,10 @@ public class AddPersonForm {
 
         ConsoleInputUtil.getAll("Press Enter to Continue.......");
 
-        Person person = new Person(name, address, birthDate, dateHired,
+        PersonDto personDto = new PersonDto(name, address, birthDate, dateHired,
                                    currentlyEmployed, gwa, roles, contacts);
-        person.getRoles().forEach(role -> role.addPerson(person));
-        save(person);
+        personDto.getRoles().forEach(role -> role.addPerson( new MapperUtil().mapToPerson(personDto) ));
+        save(personDto);
     }
 
     public static Set<Role> chooseRoles() {
@@ -48,11 +50,9 @@ public class AddPersonForm {
         return PersonDetailsInput.getRolesInformation(roles);
     }
 
-    private static void save(Person person) {
-        Integer id = new PersonService().addPerson(person);
-        // person.getRoles().forEach(role -> new RoleService().updateRole(role));
+    private static void save(PersonDto person) {
+        Integer id = new PersonDtoService().addPerson(person);
         System.out.println(person + " has been saved to the database with an id of: " + id);
-        person.getRoles().forEach(role -> System.out.println(role.getRoleName() + " " + role.getPersons()));
     }
 
 }

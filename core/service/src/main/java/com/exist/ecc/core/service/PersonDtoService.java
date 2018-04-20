@@ -6,6 +6,11 @@ import java.util.List;
 
 public class PersonDtoService {
 
+	public Integer addPerson(PersonDto personDto) {
+		Person personToBeAdded = new MapperUtil().mapToPerson(personDto);
+		return new PersonDao().addPerson(personToBeAdded);
+	}
+
 	public PersonDto getPersonDto(int id) {
 		Person person = new PersonDao().getPerson(id);
 		return new MapperUtil().mapToPersonDto(person);
