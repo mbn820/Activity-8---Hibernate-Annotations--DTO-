@@ -1,10 +1,8 @@
 package com.exist.ecc.app.forms;
 
 import com.exist.ecc.app.ConsoleInputUtil;
-import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Address;
-import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.PersonDtoService;
 import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.util.Util;
@@ -66,8 +64,8 @@ public class ViewPersonForm {
 	}
 
 	public static void  viewAllPerson(){
-		List<Person> persons = new PersonService().getAllPerson("id");
-		Util.printPersonInfo(persons);
+		List<PersonDto> persons = new PersonDtoService().getAllPersonDto("id");
+		Util.printPersonDtoInfo(persons);
 
 		System.out.println("\nORDER BY: ");
 		System.out.println("[1] Last Name");
@@ -79,18 +77,18 @@ public class ViewPersonForm {
 		switch(choice) {
 			case 1 :
 				System.out.println("\nORDER BY LAST NAME");
-				persons = new PersonService().getPersonsByLastName(""); // criteria
-				Util.printPersonInfo(persons);
+				persons = new PersonDtoService().getPersonDtosByLastName(""); // criteria
+				Util.printPersonDtoInfo(persons);
 				break;
 			case 2 :
 			    System.out.println("\nORDER BY GWA");
-				persons.sort(Comparator.comparing(Person :: getGwa)); // java sort
-				Util.printPersonInfo(persons);
+				persons.sort(Comparator.comparing(PersonDto :: getGwa)); // java sort
+				Util.printPersonDtoInfo(persons);
 				break;
 			case 3 :
 			    System.out.println("\nORDER BY DATE HIRED");
-				persons = new PersonService().getAllPerson("dateHired"); // hql
-				Util.printPersonInfo(persons);
+				persons = new PersonDtoService().getAllPersonDto("dateHired"); // hql
+				Util.printPersonDtoInfo(persons);
 				break;
 			case 4 :
 				show();

@@ -1,8 +1,7 @@
 package com.exist.ecc.app.forms;
 
 import com.exist.ecc.app.ConsoleInputUtil;
-import com.exist.ecc.core.model.Person;
-import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.PersonDtoService;
 
 public class DeletePersonForm {
 	public static void show() {
@@ -14,7 +13,7 @@ public class DeletePersonForm {
 
 	public static void delete(int id) {
 		try {
-			new PersonService().deletePerson(id);
+			new PersonDtoService().deletePerson(id);
 		} catch(Exception e) {
 			System.out.println("Record does not exist");
 			return;
