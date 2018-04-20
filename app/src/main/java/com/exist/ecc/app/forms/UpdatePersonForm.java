@@ -1,21 +1,15 @@
 package com.exist.ecc.app.forms;
 
-import com.exist.ecc.app.ConsoleInputUtil;
-import com.exist.ecc.core.model.Person;
-import com.exist.ecc.core.model.Name;
-import com.exist.ecc.core.model.Address;
-import com.exist.ecc.core.model.Contact;
-import com.exist.ecc.core.model.Role;
-import com.exist.ecc.core.service.PersonService;
-import com.exist.ecc.core.service.PersonDtoService;
-import com.exist.ecc.core.service.PersonDto;
-import com.exist.ecc.core.service.RoleService;
-import com.exist.ecc.util.Util;
 import java.util.Date;
 import java.util.Set;
 import java.util.List;
 import java.util.HashSet;
-
+import com.exist.ecc.app.ConsoleInputUtil;
+import com.exist.ecc.core.model.*;
+import com.exist.ecc.core.service.PersonDtoService;
+import com.exist.ecc.core.service.PersonDto;
+import com.exist.ecc.core.service.RoleService;
+import com.exist.ecc.util.Util;
 
 
 public class UpdatePersonForm {

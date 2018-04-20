@@ -1,6 +1,5 @@
 package com.exist.ecc.app;
 
-import com.exist.ecc.core.service.PersonService;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.app.forms.*;
 import com.exist.ecc.core.dao.*;

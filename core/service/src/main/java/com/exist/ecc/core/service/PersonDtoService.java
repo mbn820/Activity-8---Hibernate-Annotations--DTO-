@@ -2,6 +2,7 @@ package com.exist.ecc.core.service;
 
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.dao.PersonDao;
+import com.exist.ecc.core.dao.HibernateDao;
 import java.util.List;
 
 public class PersonDtoService {
