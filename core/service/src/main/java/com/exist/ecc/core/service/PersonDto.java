@@ -1,7 +1,7 @@
 package com.exist.ecc.core.service;
 
-import com.exist.ecc.core.model.*;
 import java.util.*;
+import com.exist.ecc.core.model.*;
 
 public class PersonDto {
 
@@ -17,7 +17,7 @@ public class PersonDto {
 
     public PersonDto() {}
     public PersonDto(Name name, Address address, Date birthDate, Date dateHired,
-                  boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
+                     boolean currentlyEmployed, double gwa, Set<Role> roles, Set<Contact> contacts) {
 
         this.name = name;
         this.address = address;

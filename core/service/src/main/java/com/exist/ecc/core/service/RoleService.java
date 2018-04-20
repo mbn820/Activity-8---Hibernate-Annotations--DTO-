@@ -33,13 +33,13 @@ public class RoleService {
 		return getAllRoles().contains(role);
 	}
 
-	// public void viewRoles() {
-	// 	System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
-	// 	getAllRoles().forEach(role -> System.out.printf("%-5s %-10s %s\n", role.getId(), role.getRoleName(), role.getPersons()));
-	// }
-
 	public void viewRoles() {
 		System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
-		getAllRoles().forEach(role -> System.out.printf("%-5s %-10s\n", role.getId(), role.getRoleName()));
+		getAllRoles().forEach(role -> System.out.printf("%-5s %-10s %s\n", role.getId(), role.getRoleName(), role.getPersons()));
 	}
+
+	// public void viewRoles() {
+	// 	System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
+	// 	getAllRoles().forEach(role -> System.out.printf("%-5s %-10s\n", role.getId(), role.getRoleName()));
+	// }
 }

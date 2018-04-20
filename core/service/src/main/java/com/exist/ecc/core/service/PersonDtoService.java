@@ -35,4 +35,8 @@ public class PersonDtoService {
 	public void deletePerson(int id) {
 		new PersonDao().deletePerson(id);
 	}
+
+	public boolean databaseIsEmpty() {
+		return getAllPersonDto("id").size() == 0;
+	}
 }

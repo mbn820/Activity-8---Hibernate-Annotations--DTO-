@@ -6,8 +6,8 @@ import com.exist.ecc.core.model.Name;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.model.Contact;
-import com.exist.ecc.core.service.PersonDtoService;
 import com.exist.ecc.core.service.PersonDto;
+import com.exist.ecc.core.service.PersonDtoService;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.core.service.MapperUtil;
 import java.util.Date;
@@ -45,10 +45,14 @@ public class AddPersonForm {
             return roles;
         }
         System.out.println("ID    ROLE");
-        existingRoles.forEach(role -> System.out.printf("[%s]   %s\n", role.getId(), role.getRoleName()));
+        existingRoles.forEach( role -> System.out.printf("[%s]   %s\n", role.getId(), role.getRoleName()) );
         // get roles by id
         return PersonDetailsInput.getRolesInformation(roles);
+
+
     }
+
+
 
     private static void save(PersonDto person) {
         Integer id = new PersonDtoService().addPerson(person);

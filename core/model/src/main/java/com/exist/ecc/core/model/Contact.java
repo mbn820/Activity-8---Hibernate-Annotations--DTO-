@@ -8,7 +8,7 @@ public class Contact {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "contact_id_generator")
-	@SequenceGenerator (name = "contact_id_generator", sequenceName = "contact_seq", allocationSize = 50)
+	@SequenceGenerator (name = "contact_id_generator", sequenceName = "contact_seq", allocationSize = 1)
 	@Column (name = "id")
 	private int id;
 

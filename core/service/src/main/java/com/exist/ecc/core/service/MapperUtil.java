@@ -1,7 +1,8 @@
 package com.exist.ecc.core.service;
 
-import ma.glasnost.orika.*;
-import ma.glasnost.orika.impl.*;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import com.exist.ecc.core.model.Person;
 import java.util.List;
 

@@ -3,6 +3,7 @@ package com.exist.ecc.app.forms;
 import java.util.Date;
 import java.util.Set;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashSet;
 import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.*;
@@ -91,7 +92,8 @@ public class UpdatePersonForm {
 	}
 
 	public static void updateRoles(PersonDto targetPerson) {
-		System.out.println("UPDATE ROLES");
+		Util.printRoleInfo( new ArrayList(targetPerson.getRoles()) );
+		System.out.println("\nUPDATE ROLES");
 		System.out.println("[1] Remove Role");
 		System.out.println("[2] Add Roles");
 		int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 2);

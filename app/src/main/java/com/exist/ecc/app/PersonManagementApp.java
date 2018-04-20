@@ -16,13 +16,12 @@ public class PersonManagementApp {
         System.out.println("[2] Manage Roles");
         System.out.println("[3] Exit");
 
-        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 4);
+        int choice = ConsoleInputUtil.getIntegerBetween("ENTER CHOICE: ", 1, 3);
 
         switch(choice) {
             case 1 : managePersonsMenu(); break;
             case 2 : manageRolesMenu();   break;
             case 3 : exit();              break;
-            case 4 : purgeDatabase();     break;
         }
     }
 
@@ -122,16 +121,6 @@ public class PersonManagementApp {
             case "y" : System.exit(0); break;
             case "n" : startMenu();    break;
         }
-    }
-
-    public static void purgeDatabase() {
-        int passcode = ConsoleInputUtil.getAnyInteger("PASSWORD : ");
-        if(passcode != 418323) {
-            startMenu();
-        }
-        new PersonDao().deleteAllRecords();
-        new RoleDao().deleteAllRoles();
-        startMenu();
     }
 
 }// 1 : 43 pm

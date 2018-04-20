@@ -12,7 +12,7 @@ public class Person {
 
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "person_id_generator")
-    @SequenceGenerator (name = "person_id_generator", sequenceName = "person_seq", allocationSize = 50)
+    @SequenceGenerator (name = "person_id_generator", sequenceName = "person_seq", allocationSize = 1)
     private int id;
 
     @Embedded

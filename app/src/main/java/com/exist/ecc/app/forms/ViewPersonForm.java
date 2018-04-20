@@ -14,6 +14,10 @@ import java.util.Comparator;
 
 public class ViewPersonForm {
 	public static void show() {
+		if(new PersonDtoService().databaseIsEmpty()) {
+			System.out.println("No records");
+			return;
+		}
 		System.out.println("[1] Find Person");
 		System.out.println("[2] View All Person");
 		System.out.println("[3] Back");
