@@ -7,6 +7,8 @@ import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.service.PersonService;
+import com.exist.ecc.core.service.PersonDtoService;
+import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.util.Util;
 import java.util.Date;
@@ -18,12 +20,12 @@ import java.util.HashSet;
 
 public class UpdatePersonForm {
 	public static void show() {
-		List<Person> allPersons = new PersonService().getAllPerson("id");
-		Util.printBasicPersonInfo(allPersons);
+		List<PersonDto> allPersons = new PersonDtoService().getAllPersonDto("id");
+		Util.printBasicPersonDtoInfo(allPersons);
 
 		int targetPersonId = ConsoleInputUtil.getAnyInteger("Enter person id: ");
 
-		Person targetPerson = new PersonService().getPerson(targetPersonId);
+		PersonDto targetPerson = new PersonDtoService().getPersonDto(targetPersonId);
 
 		if(targetPerson == null) {
 			System.out.println("Record does not exist");
@@ -89,12 +91,12 @@ public class UpdatePersonForm {
 		System.out.println("[9] Cancel");
 	}
 
-	public static void update(Person person) {
-		new PersonService().updatePerson(person);
+	public static void update(PersonDto person) {
+		new PersonDtoService().updatePerson(person);
 		System.out.println("Person has been updated");
 	}
 
-	public static void updateRoles(Person targetPerson) {
+	public static void updateRoles(PersonDto targetPerson) {
 		System.out.println("UPDATE ROLES");
 		System.out.println("[1] Remove Role");
 		System.out.println("[2] Add Roles");
@@ -110,7 +112,7 @@ public class UpdatePersonForm {
 		}
 	}
 
-	public static void updateContacts(Person targetPerson) {
+	public static void updateContacts(PersonDto targetPerson) {
 		Set<Contact> targetPersonContacts = targetPerson.getContacts();
 
 		System.out.println("Current list of Contacts: ");

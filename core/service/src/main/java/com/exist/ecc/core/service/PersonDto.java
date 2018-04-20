@@ -103,6 +103,19 @@ public class PersonDto {
         this.contacts = contacts;
     }
 
+	public void addRole(Role role) {
+        if(roles == null) {
+            roles = new HashSet<Role>();
+        }
+        roles.add(role);
+        role.addPerson( new MapperUtil().mapToPerson(this) );
+    }
+
+    public void removeRole(Role role) {
+        roles.remove(role);
+        role.removePerson( new MapperUtil().mapToPerson(this) );
+    }
+
     public void addContact(Contact contact) {
         contacts.add(contact);
     }
