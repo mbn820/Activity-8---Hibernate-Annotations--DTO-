@@ -1,4 +1,4 @@
-package com.exist.ecc.core.service;
+package com.exist.ecc.core.model.dto;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -41,7 +41,7 @@ public class RoleDto {
 
 	public void addPerson(PersonDto person) {
 		if(persons == null) {
-			persons = new HashSet<Person>();
+			persons = new HashSet<PersonDto>();
 		}
 		persons.add(person);
 		person.getRoles().add(this);

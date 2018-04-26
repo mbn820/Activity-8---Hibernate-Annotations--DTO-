@@ -4,13 +4,13 @@ import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.Contact;
 import com.exist.ecc.core.model.Address;
 import com.exist.ecc.core.service.PersonDtoService;
-import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.util.Util;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.LinkedHashSet;
 import java.util.Comparator;
+import com.exist.ecc.core.model.dto.*;
 
 public class ViewPersonForm {
 	public static void show() {
@@ -115,14 +115,14 @@ public class ViewPersonForm {
 	}
 
 	public static void viewContacts(PersonDto person) {
-		Set<Contact> contacts = person.getContacts();
+		Set<ContactDto> contacts = person.getContacts();
 		System.out.printf("%s's Contacts: \n", person.getName().getFirstName());
 		contacts.forEach(c -> System.out.println("\t" + c));
 		viewContactOrAddress(person);
 	}
 
 	public static void viewAddress(PersonDto person) {
-		Address address = person.getAddress();
+		AddressDto address = person.getAddress();
 		System.out.printf("%s's Address: \n", person.getName().getFirstName());
 		System.out.println("\t" + address);
 		viewContactOrAddress(person);

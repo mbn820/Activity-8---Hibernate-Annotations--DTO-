@@ -5,10 +5,11 @@ import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.util.Util;
 import java.util.List;
+import com.exist.ecc.core.model.dto.*;
 
 public class DeleteRolesForm {
 	public static void show() {
-		List<Role> existingRoles = new RoleService().getAllRoles();
+		List<RoleDto> existingRoles = new RoleService().getAllRoles();
 		Util.printRoleInfo(existingRoles);
 
 		int chosenRoleId = ConsoleInputUtil.getAnyInteger("Enter the id of the role you want to delete: ");

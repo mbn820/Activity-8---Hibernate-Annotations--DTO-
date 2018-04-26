@@ -2,7 +2,8 @@ package com.exist.ecc.util;
 
 import com.exist.ecc.core.model.Person;
 import com.exist.ecc.core.model.Role;
-import com.exist.ecc.core.service.PersonDto;
+import com.exist.ecc.core.model.dto.RoleDto;
+import com.exist.ecc.core.model.dto.PersonDto;
 import java.util.List;
 
 public class Util {
@@ -26,11 +27,11 @@ public class Util {
 		persons.forEach(person -> System.out.printf("%-9s%s\n", person.getId(), person.getName()));
 	}
 
-	public static void printRoleInfo(Role role) {
+	public static void printRoleInfo(RoleDto role) {
 		System.out.printf(ROLE_FORMAT, role.getId(), role.getRoleName(), role.getPersons());
 	}
 
-	public static void printRoleInfo(List<Role> roles) {
+	public static void printRoleInfo(List<RoleDto> roles) {
 		System.out.println(ROLE_HEADER);
 		roles.forEach(role -> printRoleInfo(role));
 	}

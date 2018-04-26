@@ -2,23 +2,28 @@ package com.exist.ecc.core.service;
 
 import com.exist.ecc.core.dao.RoleDao;
 import com.exist.ecc.core.model.Role;
+import com.exist.ecc.core.model.dto.RoleDto;
 import java.util.List;
 
 public class RoleService {
-	public Integer addRole(Role role) {
-		return new RoleDao().addRole(role);
+	public Integer addRole(RoleDto roleDto) {
+		Role roleToBeAdded = new MapperUtil().mapToRole(roleDto);
+		return new RoleDao().addRole(roleToBeAdded);
 	}
 
-	public Role getRole(int id) {
-		return new RoleDao().getRole(id);
+	public RoleDto getRole(int id) {
+		Role role = new RoleDao().getRole(id);
+		return new MapperUtil().mapToRoleDto(role);
 	}
 
-	public List<Role> getAllRoles() {
-		return new RoleDao().getAllRoles();
+	public List<RoleDto> getAllRoles() {
+		List<Role> roles = new RoleDao().getAllRoles();
+		return new MapperUtil().mapToRoleDtoList(roles);
 	}
 
-	public void updateRole(Role role) {
-		new RoleDao().updateRole(role);
+	public void updateRole(RoleDto role) {
+		Role roleToBeUpdated = new MapperUtil().mapToRole(role);
+		new RoleDao().updateRole(roleToBeUpdated);
 	}
 
 	public void deleteRole(int id) throws Exception {
@@ -29,7 +34,7 @@ public class RoleService {
 		}
 	}
 
-	public boolean roleAlreadyExists(Role role) {
+	public boolean roleAlreadyExists(RoleDto role) {
 		return getAllRoles().contains(role);
 	}
 
@@ -37,9 +42,4 @@ public class RoleService {
 		System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
 		getAllRoles().forEach(role -> System.out.printf("%-5s %-10s %s\n", role.getId(), role.getRoleName(), role.getPersons()));
 	}
-
-	// public void viewRoles() {
-	// 	System.out.printf("%-5s %-10s %s\n", "ID", "ROLE", "PERSONS");
-	// 	getAllRoles().forEach(role -> System.out.printf("%-5s %-10s\n", role.getId(), role.getRoleName()));
-	// }
 }

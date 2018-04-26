@@ -4,11 +4,8 @@ import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
 import com.exist.ecc.app.ConsoleInputUtil;
-import com.exist.ecc.core.model.Person;
-import com.exist.ecc.core.model.Name;
-import com.exist.ecc.core.model.Address;
-import com.exist.ecc.core.model.Role;
-import com.exist.ecc.core.model.Contact;
+import com.exist.ecc.core.model.*;
+import com.exist.ecc.core.model.dto.*;
 import com.exist.ecc.core.service.RoleService;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -18,7 +15,7 @@ public class PersonDetailsInput {
 		return String.format("\t%-20s: ", str);
 	}
 
-	public static Name getNameInformation() {
+	public static NameDto getNameInformation() {
 		System.out.println("**NAME**");
         String firstName = ConsoleInputUtil.getAnyString( formatter("First Name") );
         String middleName = ConsoleInputUtil.getAnyString( formatter("Middle Name") );
@@ -26,17 +23,17 @@ public class PersonDetailsInput {
 		String suffix = ConsoleInputUtil.getAnyString( formatter("Suffix") );
 		String title = ConsoleInputUtil.getAnyString( formatter("Title") );
 
-        return new Name(firstName, middleName, lastName, suffix, title);
+        return new NameDto(firstName, middleName, lastName, suffix, title);
     }
 
-    public static Address getAddressInformation() {
+    public static AddressDto getAddressInformation() {
 		System.out.println("**ADDRESS**");
         int streetNumber = ConsoleInputUtil.getAnyInteger( formatter("Street Number") );
         String barangay = ConsoleInputUtil.getAnyString( formatter("Barangay") );
         String municipality = ConsoleInputUtil.getAnyString( formatter("Municipality") );
         String zipcode = ConsoleInputUtil.getDesiredPattern( formatter("Zipcode"), "[0-9]{4}", "Invalid Input | Please enter 4 digit zipcode");
 
-        return new Address(streetNumber, barangay, municipality, zipcode);
+        return new AddressDto(streetNumber, barangay, municipality, zipcode);
     }
 
     public static Date getDateInformation(String header) {
@@ -70,15 +67,15 @@ public class PersonDetailsInput {
         return ConsoleInputUtil.getDoubleBetween( formatter("Enter GWA [1.0-5.0]"), 1.0, 5.0);
     }
 
-	public static Role getSingleRoleInformation() {
+	public static RoleDto getSingleRoleInformation() {
 		System.out.println("**ROLE**");
 		String roleName = ConsoleInputUtil.getAnyString( formatter("Role") );
-		return new Role(roleName);
+		return new RoleDto(roleName);
 	}
 
-	public static Set<Role> getRolesInformation(Set<Role> roles) {
+	public static Set<RoleDto> getRolesInformation(Set<RoleDto> roles) {
         int roleId = ConsoleInputUtil.getAnyInteger("Enter role id: ");
-		Role chosenRole = new RoleService().getRole(roleId);
+		RoleDto chosenRole = new RoleService().getRole(roleId);
 		roles.add(chosenRole);
 
 		String decision = ConsoleInputUtil.getDesiredString("\tAdd more role or proceed? [a/p]:", "a", "p");
@@ -92,13 +89,13 @@ public class PersonDetailsInput {
 		return roles;
     }
 
-	public static Contact getSingleContact(String contactType, String pattern, String errorMsg) {
+	public static ContactDto getSingleContact(String contactType, String pattern, String errorMsg) {
 		System.out.println("**CONTACT**");
 		String details = ConsoleInputUtil.getDesiredPattern( formatter(contactType), pattern, errorMsg );
-		return new Contact(contactType, details);
+		return new ContactDto(contactType, details);
 	}
 
-	public static Set<Contact> getContactInformation(Set<Contact> contacts) {
+	public static Set<ContactDto> getContactInformation(Set<ContactDto> contacts) {
 		System.out.println("Choose contact type to add: ");
 		System.out.println("[1] Email");
 		System.out.println("[2] Phone");

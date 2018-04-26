@@ -3,11 +3,12 @@ package com.exist.ecc.app.forms;
 import com.exist.ecc.core.model.Role;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.app.ConsoleInputUtil;
+import com.exist.ecc.core.model.dto.*;
 
 public class AddRolesForm {
 
 	public static void show() {
-		Role role = PersonDetailsInput.getSingleRoleInformation();
+		RoleDto role = PersonDetailsInput.getSingleRoleInformation();
 
 		ConsoleInputUtil.getAll("Press Enter to continue.......");
 

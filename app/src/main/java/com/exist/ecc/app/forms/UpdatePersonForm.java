@@ -8,9 +8,9 @@ import java.util.HashSet;
 import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.model.*;
 import com.exist.ecc.core.service.PersonDtoService;
-import com.exist.ecc.core.service.PersonDto;
 import com.exist.ecc.core.service.RoleService;
 import com.exist.ecc.util.Util;
+import com.exist.ecc.core.model.dto.*;
 
 
 public class UpdatePersonForm {
@@ -33,11 +33,11 @@ public class UpdatePersonForm {
 
 		switch(choice) {
 			case 1 :
-				Name newName = PersonDetailsInput.getNameInformation();
+				NameDto newName = PersonDetailsInput.getNameInformation();
 				targetPerson.setName(newName);
 				break;
 			case 2 :
-				Address newAddress = PersonDetailsInput.getAddressInformation();
+				AddressDto newAddress = PersonDetailsInput.getAddressInformation();
 				targetPerson.setAddress(newAddress);
 				break;
 			case 3 :
@@ -102,14 +102,14 @@ public class UpdatePersonForm {
 			case 1 : int roleId = ConsoleInputUtil.getAnyInteger("Enter role id: ");
 			         targetPerson.removeRole(new RoleService().getRole(roleId));
 					 break;
-			case 2 : Set<Role> newRoles = PersonDetailsInput.getRolesInformation(targetPerson.getRoles());
+			case 2 : Set<RoleDto> newRoles = PersonDetailsInput.getRolesInformation(targetPerson.getRoles());
 			         newRoles.forEach(role -> targetPerson.addRole(role));
 					 break;
 		}
 	}
 
 	public static void updateContacts(PersonDto targetPerson) {
-		Set<Contact> targetPersonContacts = targetPerson.getContacts();
+		Set<ContactDto> targetPersonContacts = targetPerson.getContacts();
 
 		System.out.println("Current list of Contacts: ");
 		targetPersonContacts.forEach(contact -> System.out.printf("[%s]  %s\n", contact.getId(), contact));
@@ -120,7 +120,7 @@ public class UpdatePersonForm {
 
 		switch(choice) {
 			case 1 : System.out.println("Add Contact Information");
-					 Set<Contact> newContacts = PersonDetailsInput.getContactInformation(targetPerson.getContacts());
+					 Set<ContactDto> newContacts = PersonDetailsInput.getContactInformation(targetPerson.getContacts());
 					 targetPersonContacts.addAll(newContacts);
 					 break;
 			case 2 : int chosenId = ConsoleInputUtil.getAnyInteger("Enter the id of contact to remove: ");

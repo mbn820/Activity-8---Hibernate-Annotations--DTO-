@@ -2,6 +2,7 @@ package com.exist.ecc.app.forms;
 
 import com.exist.ecc.app.ConsoleInputUtil;
 import com.exist.ecc.core.service.PersonDtoService;
+import com.exist.ecc.core.model.dto.*;
 
 public class DeletePersonForm {
 	public static void show() {

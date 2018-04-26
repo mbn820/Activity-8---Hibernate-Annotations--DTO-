@@ -1,46 +1,41 @@
 package com.exist.ecc.app.forms;
 
 import com.exist.ecc.app.ConsoleInputUtil;
-import com.exist.ecc.core.model.Person;
-import com.exist.ecc.core.model.Name;
-import com.exist.ecc.core.model.Address;
-import com.exist.ecc.core.model.Role;
-import com.exist.ecc.core.model.Contact;
-import com.exist.ecc.core.service.PersonDto;
+import com.exist.ecc.core.model.*;
 import com.exist.ecc.core.service.PersonDtoService;
 import com.exist.ecc.core.service.RoleService;
-import com.exist.ecc.core.service.MapperUtil;
 import java.util.Date;
 import java.util.Set;
 import java.util.List;
 import java.util.HashSet;
+import com.exist.ecc.core.model.dto.*;
 
 public class AddPersonForm {
 
     public static void show() {
-        Set<Contact> contacts = new HashSet<Contact>();
+        Set<ContactDto> contacts = new HashSet<ContactDto>();
 
-        Name name = PersonDetailsInput.getNameInformation();
-        Address address = PersonDetailsInput.getAddressInformation();
+        NameDto name = PersonDetailsInput.getNameInformation();
+        AddressDto address = PersonDetailsInput.getAddressInformation();
         Date birthDate = PersonDetailsInput.getDateInformation("BIRTH DATE");
         Date dateHired = PersonDetailsInput.getDateInformation("DATE HIRED");
         boolean currentlyEmployed = PersonDetailsInput.getEmploymentStatusInformation();
         double gwa = PersonDetailsInput.getGwaInformation();
-        Set<Role> roles = chooseRoles();
+        Set<RoleDto> roles = chooseRoles();
         contacts = PersonDetailsInput.getContactInformation(contacts);
 
         ConsoleInputUtil.getAll("Press Enter to Continue.......");
 
         PersonDto personDto = new PersonDto(name, address, birthDate, dateHired,
                                    currentlyEmployed, gwa, roles, contacts);
-        personDto.getRoles().forEach(role -> role.addPerson( new MapperUtil().mapToPerson(personDto) ));
+        personDto.getRoles().forEach(role -> role.addPerson( personDto ));
         save(personDto);
     }
 
-    public static Set<Role> chooseRoles() {
-        Set<Role> roles = new HashSet<Role>();
+    public static Set<RoleDto> chooseRoles() {
+        Set<RoleDto> roles = new HashSet<RoleDto>();
         // display roles
-        List<Role> existingRoles = new RoleService().getAllRoles();
+        List<RoleDto> existingRoles = new RoleService().getAllRoles();
         if(existingRoles.isEmpty()) {
             return roles;
         }
