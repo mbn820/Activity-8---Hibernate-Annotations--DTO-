@@ -18,8 +18,6 @@
 		<property name = "hibernate.cache.use_query_cache">true</property>
 		<property name = "net.sf.ehcache.configurationResourceName">ehcache.xml</property>
 
-		<property name = "hibernate.hbm2ddl.auto">update</property>
-
 		<mapping class = "com.exist.ecc.core.model.Person"/>
 		<mapping class = "com.exist.ecc.core.model.Role"/>
 		<mapping class = "com.exist.ecc.core.model.Contact"/>
